@@ -29,10 +29,16 @@ mongoose.connect(config.database, {
 	useMongoClient: true
 });
 
+
+const arduinoPorts = {
+	genuino: "/dev/cu.usbmodem1421",
+	nano: "/dev/tty.wchusbserial1420"
+};
+
 const SerialPort = require('serialport');
 const parser = new SerialPort.parsers.Readline();
 
-const arduino = new SerialPort('/dev/cu.usbmodem1421', {
+const arduino = new SerialPort(arduinoPorts.nano, {
 	baudRate: 9600
 });
 
