@@ -6,14 +6,20 @@ router.get('/', (req, res) => {
 	res.send('hello world');
 });
 
-let newTemperature = new temperatureModel({
-	location: "thuis",
-	temperature: 20.2,
-	timestamp: Date.now()
-});
+router.post('/', (req, res) => {
+	console.log(req.body);
 
-temperatureModel.addTemperature(newTemperature, function(){
-	console.log('ik denk dat ik er een heb toegevoegd.');
+	let newTemperature = new temperatureModel({
+		location: "thuis",
+		temperature: 20.2,
+		timestamp: Date.now()
+	});
+
+	temperatureModel.addTemperature(newTemperature, function(){
+		console.log('ik denk dat ik er een heb toegevoegd.');
+	});
+
+	res.send('thanks ik heb je submit binnen gekregen.');
 });
 
 
