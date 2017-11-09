@@ -3,13 +3,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
 const temperatureModel = require('./models/temperature');
-const fs = require('fs');
+const temperatureRecorder = require('./workers/temprecorder');
 
 const app = express();
 const port = 4000;
@@ -30,19 +29,9 @@ mongoose.connect(config.database, {
 });
 
 
-const arduinoPorts = {
-	genuino: "/dev/cu.usbmodem1421",
-	nano: "/dev/tty.wchusbserial1420"
-};
+// temperatureRecorder.recordTemperatures();
 
-const SerialPort = require('serialport');
-const parser = new SerialPort.parsers.Readline();
 
-const arduino = new SerialPort(arduinoPorts.nano, {
-	baudRate: 9600
-});
-
-let parsedStream = arduino.pipe(parser);
-
-parsedStream.on('data', console.log);
-
+// temperatureModel.getAll().then(function(data){
+// 	console.log(data.length);
+// });
