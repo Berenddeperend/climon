@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const moment = require('moment');
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -30,8 +31,3 @@ mongoose.connect(config.database, {
 
 
 // temperatureRecorder.recordTemperatures();
-
-
-// temperatureModel.getAll().then(function(data){
-// 	console.log(data.length);
-// });
