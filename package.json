@@ -1,12 +1,15 @@
 {
   "name": "tempmon",
   "version": "1.0.0",
-  "description": "",
+  "engines": {
+    "node": "8.8.1"
+  },
+  "description": "Temperatuurmonitur.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Berend",
   "license": "ISC",
   "dependencies": {
     "bluetooth-serial-port": "^2.1.5",

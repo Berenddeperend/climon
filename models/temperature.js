@@ -19,24 +19,19 @@ const TemperatureSchema = mongoose.Schema({
 
 const Temperature = module.exports = mongoose.model('Temperature', TemperatureSchema );
 
+function buildFullQuery(timestamp){
+	return { $gt: 10, $lt: 20 };
+}
 
 module.exports.addTemperature = (newTemperature, callback) => {
 	newTemperature.save(callback);
 };
-
-function buildFullQuery(timestamp){
-	return { $gt: 10, $lt: 20 };
-
-	//hierin kan ik van de argument twee nieuwe timestamps maken, eentje een seconde voor de argument, eentje een seconde erna.
-}
-
 
 module.exports.getAll = () => {
 	return new Promise(function(resolve, reject){
 		Temperature.find({
 			// temperature: { $gt: 22 },
 			// temperature: buildFullQuery(),
-			// timestamp: new Date()
 		})
 		.exec(function(err, data){
 			if(err) {
@@ -46,6 +41,29 @@ module.exports.getAll = () => {
 			}
 		});
 	});
+};
 
+module.exports.getEachHour = () => {
+	return new Promise(function(resolve, reject){
+		Temperature.find({
+		})
+		.exec(function(err, data){
+			if(err) {
+				reject(err);
+			} else {
+				resolve(data);
+			}
+		}).then(function(data){
+			let arr = [];
+
+			data.forEach(function(item){
+				if ( queryFilter(item) ) {
+					arr.push(item);
+				}
+			});
+
+			resolve(arr);
+		});
+	});
 };
 

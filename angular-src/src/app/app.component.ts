@@ -35,23 +35,31 @@ export class AppComponent implements OnInit {
         chart: {
           type: 'spline'
         },
+        boost: {
+          enabled: true,
+          useGPUTranslations: true
+        },
         title: {
-          text: 'Linechart'
+          text: 'Temperatuur in Berend\'s woonkamer'
         },
         yAxis: {
           title: {
-            text: 'Temperature'
+            text: 'Temperatuur'
           }
         },
         xAxis: {
           title: {
             text: 'Timestamp'
           },
+          type: 'datetime',
           categories: _stamps
         },
         plotOptions: {
           spline: {
             dataLabels: {
+              enabled: false
+            },
+            marker: {
               enabled: false
             }
           }
@@ -60,11 +68,10 @@ export class AppComponent implements OnInit {
           enabled: false
         },
         series: [{
-          name: 'thuis',
+          name: 'Thuis',
           data: _temps
         }]
       });
     });
   }
-
 }
