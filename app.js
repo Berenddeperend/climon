@@ -29,5 +29,4 @@ mongoose.connect(config.database, {
 	useMongoClient: true
 });
 
-
 // temperatureRecorder.recordTemperatures();

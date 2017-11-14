@@ -1,0 +1,1 @@
+web: node app.js && cd angular-src && npm run start
