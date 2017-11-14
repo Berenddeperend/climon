@@ -10,24 +10,21 @@ import * as moment from 'moment';
 })
 
 export class AppComponent implements OnInit {
-  data;
   chart;
 
-  constructor(private http: HttpClient){}
-
+  constructor( private http: HttpClient ) {}
 
   ngOnInit() {
-    this.http.get('http://localhost:4000/').subscribe(data => {
-      this.data = data;
 
+    this.http.get('http://localhost:4000/').subscribe(data => {
       let _temps = [];
       let _stamps = [];
       let _locations = [];
 
-      for(let item of data) {
-        _temps.push(Number((item.temperature).toFixed(1)));
-        _stamps.push(moment(item.timestamp).format('dd HH:mm'));
-        _locations.push(item.location);
+      for(let item in data) {
+        _temps.push(Number((data[item].temperature).toFixed(1)));
+        _stamps.push(moment(data[item].timestamp).format('dd HH:mm'));
+        _locations.push(data[item].location);
       }
 
 
@@ -35,10 +32,10 @@ export class AppComponent implements OnInit {
         chart: {
           type: 'spline'
         },
-        boost: {
-          enabled: true,
-          useGPUTranslations: true
-        },
+        // boost: {
+        //   enabled: true,
+        //   useGPUTranslations: true
+        // },
         title: {
           text: 'Temperatuur in Berend\'s woonkamer'
         },
