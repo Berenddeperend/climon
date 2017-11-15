@@ -1,3 +1,7 @@
+//in package.josn:   "start": "concurrently --kill-others \"node app.js\" \"cd angular-src && npm run start\""
+
+
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -20,6 +24,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', tempmonController);
+
+console.log('working');
 
 app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);

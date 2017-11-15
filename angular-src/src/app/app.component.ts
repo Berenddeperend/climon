@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.get('http://localhost:4000/').subscribe(data => {
+    this.http.get('http://localhost:4000/tempmon/data').subscribe(data => {
       let _temps = [];
       let _stamps = [];
       let _locations = [];

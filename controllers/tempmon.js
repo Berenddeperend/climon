@@ -4,6 +4,10 @@ const moment = require('moment');
 const temperatureModel = require('../models/temperature');
 
 router.get('/', (req, res) => {
+	res.send('../public/index.html');
+});
+
+router.get('/tempmon/data', (req, res) => {
 	temperatureModel.getAll().then(function(data){
 		let arr = [];
 
