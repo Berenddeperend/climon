@@ -7,7 +7,13 @@ router.get('/', (req, res) => {
 	res.send('../public/index.html');
 });
 
+
+// mongodb://Berend:vrijdag@ds042527.mlab.com:42527/tempmon
+
 router.get('/tempmon/data', (req, res) => {
+	console.log('ik heb een request ontvangen');
+
+
 	temperatureModel.getAll().then(function(data){
 		let arr = [];
 

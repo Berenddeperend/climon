@@ -16,6 +16,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+
+    //Mijn angular app moet niet direct met mongo praten, maar met een node scriptje.
+    //Node scriptje moet kijken waar hij de data vandaan moet plukken
+    // -> indien env = dev -> mongoose, grijp hem lokaal. of niet.
+    // -> indien env = prod ->  ook mongoose. Maar dan plukt ie hem van mlab
+
     this.http.get('http://localhost:4000/tempmon/data').subscribe(data => {
       let _temps = [];
       let _stamps = [];

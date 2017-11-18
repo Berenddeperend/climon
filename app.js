@@ -16,7 +16,7 @@ const temperatureModel = require('./models/temperature');
 const temperatureRecorder = require('./workers/temprecorder');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
