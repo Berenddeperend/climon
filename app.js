@@ -1,7 +1,5 @@
 //in package.josn:   "start": "concurrently --kill-others \"node app.js\" \"cd angular-src && npm run start\""
 
-
-
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -16,12 +14,13 @@ const temperatureModel = require('./models/temperature');
 const temperatureRecorder = require('./workers/temprecorder');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'));
 
 app.use('/', tempmonController);
 
@@ -31,7 +30,9 @@ app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);
 });
 
-mongoose.connect(config.database, {
+
+//use .local or .mlab
+mongoose.connect(config.database.local, {
 	useMongoClient: true
 });
 

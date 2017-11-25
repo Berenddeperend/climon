@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'angular-highcharts';
 import * as moment from 'moment';
+import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(environment.db);
+
 
     //Mijn angular app moet niet direct met mongo praten, maar met een node scriptje.
     //Node scriptje moet kijken waar hij de data vandaan moet plukken
     // -> indien env = dev -> mongoose, grijp hem lokaal. of niet.
     // -> indien env = prod ->  ook mongoose. Maar dan plukt ie hem van mlab
 
-    this.http.get('http://localhost:4000/tempmon/data').subscribe(data => {
+    this.http.get(environment.db).subscribe(data => {
       let _temps = [];
       let _stamps = [];
       let _locations = [];
