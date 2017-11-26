@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
 router.get('/tempmon/data', (req, res) => {
 	console.log('ik heb een request ontvangen');
 
-
-
 	temperatureModel.getAll().then(function(data){
 		let arr = [];
 
