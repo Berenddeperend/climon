@@ -59,4 +59,4 @@ typings/
 .env
 
 # Secret passwords file
-config/passwords
+config/passwords.js
