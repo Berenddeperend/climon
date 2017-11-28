@@ -1,4 +1,4 @@
-//in package.josn:   "start": "concurrently --kill-others \"node app.js\" \"cd angular-src && npm run start\""
+require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
@@ -32,6 +32,7 @@ app.listen(port, () => {
 
 
 //use .local or .mlab
+// mongoose.connect(config.database.local, {
 mongoose.connect(config.database.local, {
 	useMongoClient: true
 });

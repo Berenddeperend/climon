@@ -60,4 +60,5 @@ typings/
 
 # Secret passwords file
 config/passwords.js
+
 \.idea/
