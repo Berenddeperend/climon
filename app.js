@@ -33,8 +33,9 @@ app.listen(port, () => {
 
 //use .local or .mlab
 // mongoose.connect(config.database.local, {
-mongoose.connect(config.database.local, {
+mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 });
+
 
 // temperatureRecorder.recordTemperatures();
