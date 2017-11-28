@@ -31,7 +31,7 @@ module.exports.getAll = () => {
 	return new Promise(function(resolve, reject){
 		Temperature.find({
 			// temperature: { $gt: 22 },
-			temperature: buildFullQuery(),
+			// temperature: buildFullQuery(),
 		})
 		.exec(function(err, data){
 			if(err) {
