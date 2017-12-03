@@ -15,6 +15,8 @@ const temperatureRecorder = require('./workers/temprecorder');
 
 const app = express();
 const port = process.env.PORT || 4000;
+let isLocal = port === 4000;
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -30,10 +32,8 @@ app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);
 });
 
-
 //use .local or .mlab
-// mongoose.connect(config.database.local, {
-mongoose.connect(config.database.mlab, {
+mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 	useMongoClient: true
 });
 
