@@ -37,6 +37,7 @@ module.exports.getAll = () => {
 			if(err) {
 				reject(err);
 			} else {
+
 				resolve(data);
 			}
 		});
@@ -45,13 +46,12 @@ module.exports.getAll = () => {
 
 module.exports.getEachHour = () => {
 	return new Promise(function(resolve, reject){
-		Temperature.find({
-		})
+		Temperature.find({})
 		.exec(function(err, data){
 			if(err) {
 				reject(err);
 			} else {
-				resolve(data);
+				return data;
 			}
 		}).then(function(data){
 			let arr = [];
@@ -67,3 +67,6 @@ module.exports.getEachHour = () => {
 	});
 };
 
+function queryFilter (item) {
+	return moment(item.timestamp).format('ss') === '00' && moment(item.timestamp).format('mm') === '00';
+}
