@@ -20,6 +20,33 @@ module.exports.recordClimates = () => {
 
 	let counter = 0;
 
+
+	let string = "temp803light1268berend1223";
+	let sensors = ["temp", "light"];
+
+	function parseValues(string, sensors) {
+		let output = {};
+
+		for(let sensor of sensors) {
+			if (parseValue(string, sensor)) {
+				output[sensor] = parseValue(string, sensor);
+			}
+		}
+
+		return output;
+
+		function parseValue(string, sensor){
+			// https://stackoverflow.com/questions/3569104/positive-look-behind-in-javascript-regular-expression
+			let regex = new RegExp(`${sensor}(\\d{1,})`);
+			if(string.match(regex)) {
+				return Number(string.match(regex)[1]);
+			} else {
+				return null;
+			}
+		}
+	}
+
+
 	function parseTemperature(value){
 		let voltage = (value / 1024) * 5;
 		let degs = (voltage - 0.5) * 100;
@@ -39,20 +66,12 @@ module.exports.recordClimates = () => {
 		});
 	}
 
-	let string = "temp803light1268";
 
-	function parseTemp(string) {
-		if(string.includes("temp")) {
-			// https://stackoverflow.com/questions/3569104/positive-look-behind-in-javascript-regular-expression
-			let regex = new RegExp(/temp(\d{1,})/);
-			return string.match(regex)[1];
-		}
-	}
 
-	function parseLight(string) {
-		if(string.includes("light")) {
-			let regex = new RegExp(/light(\d{1,})/);
-			return string.match(regex)[1];
-		}
-	}
+	console.log(parseValues(string, sensors));
+
+
+
+
+
 };
