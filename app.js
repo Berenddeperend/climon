@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
-const temperatureRecorder = require('./workers/temprecorder');
+// const temperatureRecorder = require('./workers/temprecorder');
+const arduinoWorker = require('./workers/streamReader');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -33,4 +34,5 @@ mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 });
 
 
+arduinoWorker.recordStreams();
 // temperatureRecorder.recordTemperatures();
