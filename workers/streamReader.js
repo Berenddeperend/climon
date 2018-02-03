@@ -1,5 +1,15 @@
+
+const { Writable } = require('stream');
+const { Readable } = require('stream');
+const { Transform } = require('stream');
+
+
 module.exports.recordStreams = () => {
-	readStreams.pipe();
+	readStreams();
+};
+
+module.exports.mockStream = () => {
+	return mockStream();
 };
 
 function readStreams() {
@@ -25,18 +35,4 @@ function readStreams() {
 	let counter = 0;
 
 	let string = "temp=802&light=111&berend=1233&location=woonkamer2";
-
-	function parseValues(string) {
-		return string
-				.split("&")
-				.reduce((acc, current, i) => {
-					let key = current.split("=")[0];
-					let val = current.split("=")[1];
-					acc[key] = val;
-
-					return acc;
-
-				}, {});
-	}
-	console.log(parseValues(string));
 }

@@ -10,6 +10,9 @@ const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
 // const temperatureRecorder = require('./workers/temprecorder');
 const arduinoWorker = require('./workers/streamReader');
+const mockStream = require('./workers/mockStream')();
+const stringParser = require('./workers/stringParser')();
+const objStreamLogger = require('./workers/objStreamLogger')();
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -33,6 +36,8 @@ mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 	useMongoClient: true
 });
 
+// console.log(arduinoWorker.mockStream());
+// arduinoWorker.mockStream.pipe(process.stdout);
 
-arduinoWorker.recordStreams();
-// temperatureRecorder.recordTemperatures();
+
+mockStream.pipe(stringParser).pipe(objStreamLogger);
