@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
 // const temperatureRecorder = require('./workers/temprecorder');
-const arduinoWorker = require('./workers/streamReader');
+const arduinoReader = require('./workers/streamReader')();
 const mockStream = require('./workers/mockStream')();
 const stringParser = require('./workers/stringParser')();
 const objStreamLogger = require('./workers/objStreamLogger')();
@@ -26,18 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', tempmonController);
 
-console.log('Hello world');
-
 app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);
 });
 
 mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 	useMongoClient: true
-});
+}).then(null, (reason) => { console.log(`Connect to database failed.`)});
 
-// console.log(arduinoWorker.mockStream());
-// arduinoWorker.mockStream.pipe(process.stdout);
-
-
-mockStream.pipe(stringParser).pipe(objStreamLogger);
+mockStream
+	.pipe(stringParser)
+	.pipe(objStreamLogger);

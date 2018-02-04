@@ -4,12 +4,8 @@ const { Readable } = require('stream');
 const { Transform } = require('stream');
 
 
-module.exports.recordStreams = () => {
-	readStreams();
-};
-
-module.exports.mockStream = () => {
-	return mockStream();
+module.exports = () => {
+	return readStreams();
 };
 
 function readStreams() {
@@ -20,19 +16,11 @@ function readStreams() {
 	};
 
 	const SerialPort = require('serialport');
-	const parser = new SerialPort.parsers.Readline();
-
+	const newlineParser = new SerialPort.parsers.Readline();
+	
 	const arduino = new SerialPort(arduinoPorts.duemilanove, {
 		baudRate: 9600
-	});
+	}, (err) => {console.log(`Connecting to Arduino on port ${arduinoPorts.duemilanove} failed.`)});
 
-	let parsedStream = arduino.pipe(parser);
-
-
-	//Stream is expected to be a string with this format: "temp=802&light=111&berend=1233&location=woonkamer2"
-	parsedStream.on('data', parseValues);
-
-	let counter = 0;
-
-	let string = "temp=802&light=111&berend=1233&location=woonkamer2";
+	return arduino.pipe(newlineParser);
 }
