@@ -9,10 +9,11 @@ mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
 // const temperatureRecorder = require('./workers/temprecorder');
-const arduinoReader = require('./workers/streamReader')();
-const mockStream = require('./workers/mockStream')();
-const stringParser = require('./workers/stringParser')();
-const objStreamLogger = require('./workers/objStreamLogger')();
+const arduinoReader = require('./workers/streamReader');
+const mockStream = require('./workers/mockStream');
+const stringParser = require('./workers/stringParser');
+const objStreamLogger = require('./workers/objStreamLogger');
+const dbSaver = require('./workers/dbSaver');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -32,8 +33,11 @@ app.listen(port, () => {
 
 mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 	useMongoClient: true
-}).then(null, (reason) => { console.log(`Connect to database failed.`)});
+}).then(() => {
 
-mockStream
-	.pipe(stringParser)
-	.pipe(objStreamLogger);
+}), (error) => { console.log(`Connect to database failed.`)};
+
+mockStream()
+	.pipe(stringParser())
+	// .pipe(objStreamLogger());
+	.pipe(dbSaver());

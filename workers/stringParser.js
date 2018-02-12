@@ -10,6 +10,7 @@ module.exports = () => {
   })
 };
 
+//remember, don't use this function on wahmen
 function objectify(chunk){
   return chunk
   .toString()
