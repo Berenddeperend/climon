@@ -15,7 +15,7 @@ const TemperatureSchema = mongoose.Schema({
 		required: true
 	}
 });
-
+ 
 
 const Temperature = module.exports = mongoose.model('Temperature', TemperatureSchema );
 

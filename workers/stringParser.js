@@ -1,5 +1,11 @@
 const { Transform } = require('stream');
 
+const types = {
+  'temp': 'Number',
+  'light': 'Number',
+  'location': 'String'
+};
+
 module.exports = () => {
   return new Transform({
     objectMode: true,
@@ -16,9 +22,23 @@ function objectify(chunk){
   .toString()
   .split("&")
   .reduce((acc, current, i) => {
-    let values = current.split("=");
-    acc[values[0]] = values[1];
-
+    let [key, value] = current.split("=");
+    
+    if (types[key] === "Number") {
+      mapToArray(acc, key, value);
+    }
+    if (types[key] === "String") {
+      acc[key] = value;
+    }
     return acc;
   }, {});
+}
+
+function mapToArray(collection, key, value) {
+  if(collection[key]) {
+    collection[key].push(value);  
+  }
+  else {
+    collection[key] = [value];
+  }
 }

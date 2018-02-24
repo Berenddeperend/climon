@@ -1,3 +1,5 @@
+const temperatureModel = require('../models/temperature'); //this was here i think..
+
 module.exports.recordTemperatures = () => {
 	const arduinoPorts = {
 		genuino: "/dev/cu.usbmodem1421",

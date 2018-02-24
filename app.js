@@ -14,6 +14,7 @@ const mockStream = require('./workers/mockStream');
 const stringParser = require('./workers/stringParser');
 const objStreamLogger = require('./workers/objStreamLogger');
 const dbSaver = require('./workers/dbSaver');
+const lightModel = require('./models/light.js').lightModel;
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -31,13 +32,13 @@ app.listen(port, () => {
 	console.log(`Starting the server at port ${port}`);
 });
 
-mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
+// mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
+mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 }).then(() => {
-
 }), (error) => { console.log(`Connect to database failed.`)};
 
 mockStream()
 	.pipe(stringParser())
-	// .pipe(objStreamLogger());
-	.pipe(dbSaver());
+	.pipe(objStreamLogger());
+	// .pipe(dbSaver());
