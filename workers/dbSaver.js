@@ -19,8 +19,12 @@ const RawDataSchema = mongoose.Schema({
 		required: true
 	},
 	temperature: {
-		type: Number,
-		required: true
+		type: [Number],
+		required: false
+  },
+  light: {
+		type: [Number],
+		required: false
 	},
 	timestamp: {
 		type: Date,
@@ -28,7 +32,7 @@ const RawDataSchema = mongoose.Schema({
 	}
 });
 
-const model = mongoose.model('MyRawMockData', RawDataSchema);
+const Model = mongoose.model('MyRawMockData', RawDataSchema);
 
 // temperatureModel.addTemperature(newTemperature, function(){
 //   console.log(`Temperature number ${counter} added.`);
@@ -39,14 +43,8 @@ const databaseSaver = function(){
   return new Writable({
     objectMode: true,
     write(obj, encoding, done){
-      let berend = new model({
-        temperature: obj.temp,
-        location: obj.location,
-        timestamp: Date.now()
-      });
-
-      berend.save();
-      console.log(obj);
+      let model = new Model(obj);
+      model.save();
       done();
     }    
   });

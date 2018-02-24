@@ -23,7 +23,7 @@ module.exports = () => {
 };
 
 function randomStringBuilder() {
-	return `temp=${randomNumberAsString()}&temp=${randomNumberAsString()}&light=${randomNumberAsString()}&location=woonkamer2`;
+	return `temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}&location=woonkamer2`;
 
 	function randomNumberAsString() {
 		return String(Math.round(Math.random() * 1023));

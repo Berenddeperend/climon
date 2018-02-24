@@ -1,7 +1,7 @@
 const { Transform } = require('stream');
 
 const types = {
-  'temp': 'Number',
+  'temperature': 'Number',
   'light': 'Number',
   'location': 'String'
 };
@@ -31,7 +31,9 @@ function objectify(chunk){
       acc[key] = value;
     }
     return acc;
-  }, {});
+  }, {
+    timestamp: Date.now()
+  });
 }
 
 function mapNumberToArray(collection, key, value) {

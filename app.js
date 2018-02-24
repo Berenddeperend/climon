@@ -33,7 +33,7 @@ app.listen(port, () => {
 });
 
 // mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
-mongoose.connect(config.database.mlab, {
+mongoose.connect(config.database.local, {
 	useMongoClient: true
 }).then(() => {
 }), (error) => { console.log(`Connect to database failed.`)};
