@@ -25,7 +25,7 @@ function objectify(chunk){
     let [key, value] = current.split("=");
     
     if (types[key] === "Number") {
-      mapToArray(acc, key, value);
+      mapNumberToArray(acc, key, value);
     }
     if (types[key] === "String") {
       acc[key] = value;
@@ -34,11 +34,11 @@ function objectify(chunk){
   }, {});
 }
 
-function mapToArray(collection, key, value) {
+function mapNumberToArray(collection, key, value) {
   if(collection[key]) {
-    collection[key].push(value);  
+    collection[key].push(Number(value));
   }
   else {
-    collection[key] = [value];
+    collection[key] = [Number(value)];
   }
 }
