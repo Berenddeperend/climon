@@ -22,6 +22,8 @@ module.exports = () => {
 	return readStream;
 };
 
+
+//Arduino should be in charge of normalizing the data, not the backend. 
 function randomStringBuilder() {
 	return `temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}&location=woonkamer2`;
 

@@ -3,6 +3,7 @@ const { Transform } = require('stream');
 const types = {
   'temperature': 'Number',
   'light': 'Number',
+  'moist': 'Number',
   'location': 'String'
 };
 

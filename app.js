@@ -38,7 +38,8 @@ mongoose.connect(config.database.local, {
 }).then(() => {
 }), (error) => { console.log(`Connect to database failed.`)};
 
-mockStream()
+// mockStream()
+arduinoReader()
 	.pipe(stringParser())
 	.pipe(objStreamLogger());
 	// .pipe(dbSaver());

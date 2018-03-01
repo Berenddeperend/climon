@@ -26,13 +26,17 @@ const RawDataSchema = mongoose.Schema({
 		type: [Number],
 		required: false
 	},
+	moist: {
+		type: [Number],
+		required: false
+	},
 	timestamp: {
 		type: Date,
 		required: true
 	}
 });
 
-const Model = mongoose.model('MyRawMockData', RawDataSchema);
+const Model = mongoose.model('atworktest', RawDataSchema);
 
 // temperatureModel.addTemperature(newTemperature, function(){
 //   console.log(`Temperature number ${counter} added.`);

@@ -18,9 +18,9 @@ function readStreams() {
 	const SerialPort = require('serialport');
 	const newlineParser = new SerialPort.parsers.Readline();
 	
-	const arduino = new SerialPort(arduinoPorts.duemilanove, {
+	const arduino = new SerialPort(arduinoPorts.genuino, {
 		baudRate: 9600
-	}, (err) => {console.log(`Connecting to Arduino on port ${arduinoPorts.duemilanove} failed.`)});
+	}, (err) => {console.log(`Connecting to Arduino on port ${arduinoPorts.genuino} failed.`)});
 
 	return arduino.pipe(newlineParser);
 }
