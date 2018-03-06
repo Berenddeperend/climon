@@ -1,26 +1,23 @@
+//This sketch needs you to manually calibrate the sensor.
+//This is because the Arduino might reboot itself. In that case,
+// it will also re-calibrate itself while measuring wet soil.
+//This might be fixed by calibrating via a sensor that will always stay dry...
+
 int moistValue1;
 int moistValue2;
 int moistValue3;
 int vvcPin = 13;
-int ledPin = LED_BUILTIN;
 
-//vars for the blinking led
-int blinkInterval = 100;
-unsigned long lastBlinkMoment = 0;
-int ledState = LOW;
-
-int calibrateTime = 5000; //number of ms to calibrate
-int extremeHigh = 0; //will be overwritten
+int extremeHigh = 964; //vvc via digital pin, three moist sensors connected.
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
 
 int delayTime = (5) * 1000 * 60; //interval for measurements in minutes.
+// int delayTime = 1000; //for manual calibrating
 
 void setup() {
   pinMode(vvcPin, OUTPUT);
-  pinMode(ledPin, OUTPUT);
   digitalWrite(vvcPin, HIGH);
   Serial.begin(9600);
-  calibrateExtremes();
 }
 
 void loop() {
@@ -38,6 +35,13 @@ void loop() {
   Serial.print("&location=testplant");
   Serial.println("");
 
+
+  //use this for manually calibrating
+  // Serial.print("Sensorvalue1: " + String(moistValue1));
+  // Serial.print(" Sensorvalue2: " + String(moistValue2));
+  // Serial.print(" Sensorvalue3: " + String(moistValue3));
+  // Serial.println("");
+
   digitalWrite(vvcPin, LOW);
 
   delay(delayTime);
@@ -47,37 +51,4 @@ String mapValue(int src) {
   return String(
       map(src, extremeLow, extremeHigh, 100, 0)
   );
-}
-
-void calibrateExtremes() {
-  // Serial.println("Starting to calibrate");
-
-  while (millis() < calibrateTime) {
-    blink();
-    moistValue1 = analogRead(A0);
-
-    if (moistValue1 > extremeHigh) {
-      extremeHigh = moistValue1;
-    }
-    // if (moistValue1 < extremeLow) {
-    //   extremeLow = moistValue1;
-    // }
-  }
-
-  digitalWrite(ledPin, LOW);
-  // Serial.println("done calibratin");
-  // Serial.print("extremehigh: " + String(extremeHigh));
-  // Serial.println(", extremeLow: " + String(extremeLow));
-}
-
-void blink() {
-  if (millis() > lastBlinkMoment + blinkInterval) {
-      if (ledState == HIGH) {
-        ledState = LOW;
-      } else {
-        ledState = HIGH;
-      }
-      digitalWrite(ledPin, ledState);
-      lastBlinkMoment = millis();
-  }
 }
