@@ -25,7 +25,7 @@ module.exports = () => {
 
 //Arduino should be in charge of normalizing the data, not the backend. 
 function randomStringBuilder() {
-	return `temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}&location=woonkamer2`;
+	return `temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}&location=TRIMM-Kaketoeplant`;
 
 	function randomNumberAsString() {
 		return String(Math.round(Math.random() * 1023));

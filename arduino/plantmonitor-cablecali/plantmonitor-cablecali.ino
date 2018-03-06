@@ -1,12 +1,16 @@
 //In this sketch, calibration is done by plugging the common anode directly to an analog input. Works nicely.
 
+
 int moistValue1;
 int moistValue2;
 int moistValue3;
 int calibrateValue;
 int vvcPin = 13;
 int ledPin = LED_BUILTIN;
+int buzzerPin = 8;
 int calibratePin = A5;
+
+int buzzerTone = 1175;
 
 //vars for the blinking led
 int blinkInterval = 100;
@@ -17,8 +21,9 @@ int calibrateTime = 5000; //number of ms to calibrate
 int extremeHigh = 0; //will be overwritten
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
 
-// int delayTime = (5) * 1000 * 60; //interval for measurements in minutes.
-int delayTime = 1000;
+// int delayTime = 5 * 1000 * 60; //interval for measurements in minutes.
+int delayTime = 300000; //5 minutes
+// int delayTime = 1000;
 
 void setup() {
   pinMode(vvcPin, OUTPUT);
@@ -38,8 +43,8 @@ void loop() {
   moistValue3 = analogRead(A2);
 
 
-
-  Serial.print("&location=testplant");
+  tone(buzzerPin, 1175, 100);
+  Serial.print("&location=TRIMM-Kaketoeplant");
   Serial.print("&moist=" + mapValue(moistValue1));
   Serial.print("&moist=" + mapValue(moistValue2));
   Serial.println("&moist=" + mapValue(moistValue3)); //end with a number value, not a string.
@@ -62,6 +67,7 @@ void calibrateExtremes() {
 
   while (millis() < calibrateTime) {
     blink();
+    
     calibrateValue = analogRead(calibratePin);
 
     if (calibrateValue > extremeHigh) {
@@ -82,10 +88,14 @@ void blink() {
   if (millis() > lastBlinkMoment + blinkInterval) {
       if (ledState == HIGH) {
         ledState = LOW;
+        tone(buzzerPin, 1175);
+
       } else {
         ledState = HIGH;
+        noTone(buzzerPin);
       }
       digitalWrite(ledPin, ledState);
       lastBlinkMoment = millis();
+      noTone(buzzerPin);
   }
 }
