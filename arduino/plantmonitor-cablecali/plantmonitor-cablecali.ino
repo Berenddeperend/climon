@@ -1,12 +1,12 @@
-//This sketch will auto-calibrate. On boot, the siolsensor should be completely dry.
-//After the arduino stops blinking, stick it in the soil.
-//Potential problem might be that the arduino might randomly reboot and do a faulthy re-calibration.
+//In this sketch, calibration is done by plugging the common anode directly to an analog input. Works nicely.
 
 int moistValue1;
 int moistValue2;
 int moistValue3;
+int calibrateValue;
 int vvcPin = 13;
 int ledPin = LED_BUILTIN;
+int calibratePin = A5;
 
 //vars for the blinking led
 int blinkInterval = 100;
@@ -37,11 +37,14 @@ void loop() {
   moistValue2 = analogRead(A1);
   moistValue3 = analogRead(A2);
 
-  Serial.print("moist=" + mapValue(moistValue1));
-  Serial.print("&moist=" + mapValue(moistValue2));
-  Serial.print("&moist=" + mapValue(moistValue3));
+
+
   Serial.print("&location=testplant");
-  Serial.println("");
+  Serial.print("&moist=" + mapValue(moistValue1));
+  Serial.print("&moist=" + mapValue(moistValue2));
+  Serial.println("&moist=" + mapValue(moistValue3)); //end with a number value, not a string.
+  
+  // Serial.println();
 
   digitalWrite(vvcPin, LOW);
 
@@ -59,10 +62,10 @@ void calibrateExtremes() {
 
   while (millis() < calibrateTime) {
     blink();
-    moistValue1 = analogRead(A0);
+    calibrateValue = analogRead(calibratePin);
 
-    if (moistValue1 > extremeHigh) {
-      extremeHigh = moistValue1;
+    if (calibrateValue > extremeHigh) {
+      extremeHigh = calibrateValue;
     }
     // if (moistValue1 < extremeLow) {
     //   extremeLow = moistValue1;
