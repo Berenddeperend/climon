@@ -5,29 +5,30 @@ int moistValue1;
 int moistValue2;
 int moistValue3;
 int calibrateValue;
-int vvcPin = 13;
-int ledPin = LED_BUILTIN;
-int buzzerPin = 8;
-int calibratePin = A5;
+const int vvcPin = 13;
+const int ledPin = LED_BUILTIN;
+const int buzzerPin = 8;
+const int calibratePin = A5;
 
-int buzzerTone = 1175;
+const int buzzerTone = 1175;
 
 //vars for the blinking led
-int blinkInterval = 100;
+const int blinkInterval = 100;
 unsigned long lastBlinkMoment = 0;
 int ledState = LOW;
 
-int calibrateTime = 5000; //number of ms to calibrate
+const int calibrateTime = 5000; //number of ms to calibrate
 int extremeHigh = 0; //will be overwritten
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
 
-// int delayTime = 5 * 1000 * 60; //interval for measurements in minutes.
-int delayTime = 300000; //5 minutes
-// int delayTime = 1000;
+const unsigned long delayTime = 5 * 1000 * 60; //interval for measurements in minutes.
+//int delayTime = 300000; //5 minutes
+
 
 void setup() {
   pinMode(vvcPin, OUTPUT);
   pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
   digitalWrite(vvcPin, HIGH);
   Serial.begin(9600);
   calibrateExtremes();
@@ -43,7 +44,7 @@ void loop() {
   moistValue3 = analogRead(A2);
 
 
-  tone(buzzerPin, 1175, 100);
+  tone(buzzerPin, 1175, 500);
   Serial.print("&location=TRIMM-Kaketoeplant");
   Serial.print("&moist=" + mapValue(moistValue1));
   Serial.print("&moist=" + mapValue(moistValue2));
