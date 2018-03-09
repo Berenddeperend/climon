@@ -1,7 +1,7 @@
-const { Writable } = require('stream');
+const { Transform } = require('stream');
 
 module.exports = () => {
-  return new Writable({
+  return new Transform({
     objectMode: true,
     write(obj, encoding, done){
       console.log(obj);
@@ -10,7 +10,7 @@ module.exports = () => {
       //   console.log(prop);
       // }
       // console.log('---')
-
+      this.push(obj);
       done();
     }    
   })

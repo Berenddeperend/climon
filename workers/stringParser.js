@@ -10,9 +10,9 @@ const types = {
 module.exports = () => {
   return new Transform({
     objectMode: true,
-    transform(chunk, encoding, callback) {
+    transform(chunk, encoding, done) {
       this.push(objectify(chunk));
-      callback();
+      done();
     }
   })
 };
