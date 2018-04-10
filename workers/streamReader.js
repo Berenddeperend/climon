@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 
 const { Writable } = require('stream');
 const { Readable } = require('stream');
@@ -7,6 +8,7 @@ const { Transform } = require('stream');
 module.exports = () => {
 	return readStreams();
 };
+
 
 function readStreams() {
 	const arduinoPorts = {
@@ -20,7 +22,10 @@ function readStreams() {
 	
 	const arduino = new SerialPort(arduinoPorts.genuino, {
 		baudRate: 9600
-	}, (err) => {console.log(`Connecting to Arduino on port ${arduinoPorts.genuino} failed.`)});
+	}, (err) => {
+		console.log(chalk.gray(`Connecting to Arduino on port ${arduinoPorts.genuino} failed:`));
+		console.log(chalk.gray((err)));
+	});
 
 	return arduino.pipe(newlineParser);
 }

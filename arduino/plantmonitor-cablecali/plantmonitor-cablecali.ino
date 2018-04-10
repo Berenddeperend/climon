@@ -21,7 +21,7 @@ int ledState = LOW;
 const int calibrateTime = 5000; //number of ms to calibrate
 int extremeHigh = 0; //will be overwritten
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
-
+  
 // const unsigned long delayTime = 900000;
 const unsigned long delayTime = 5000;
 
