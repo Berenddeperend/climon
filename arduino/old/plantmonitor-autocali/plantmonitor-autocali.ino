@@ -37,10 +37,16 @@ void loop() {
   moistValue2 = analogRead(A1);
   moistValue3 = analogRead(A2);
 
-  Serial.print("&location=testplant");
-  Serial.print("&moist=" + mapValue(moistValue1));
-  Serial.print("&moist=" + mapValue(moistValue2));
-  Serial.println("&moist=" + mapValue(moistValue3));
+  // Serial.print("&location=testplant");
+  // Serial.print("&moist=" + mapValue(moistValue1));
+  // Serial.print("&moist=" + mapValue(moistValue2));
+  // Serial.println("&moist=" + mapValue(moistValue3));
+  Serial.print("Raw sensor 1 value: ");
+  Serial.println(moistValue1);
+  Serial.print("Raw sensor 2 value: ");
+  Serial.println(moistValue2);
+  Serial.print("Raw sensor 3 value: ");
+  Serial.println(moistValue3);
 
   digitalWrite(vvcPin, LOW);
 

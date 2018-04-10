@@ -4,6 +4,7 @@
 int moistValue1;
 int moistValue2;
 int moistValue3;
+int moistValue4;
 int calibrateValue;
 const int vvcPin = 13;
 const int ledPin = LED_BUILTIN;
@@ -21,7 +22,8 @@ const int calibrateTime = 5000; //number of ms to calibrate
 int extremeHigh = 0; //will be overwritten
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
 
-const unsigned long delayTime = 900000;
+// const unsigned long delayTime = 900000;
+const unsigned long delayTime = 5000;
 
 
 void setup() {
@@ -41,13 +43,17 @@ void loop() {
   moistValue1 = analogRead(A0);
   moistValue2 = analogRead(A1);
   moistValue3 = analogRead(A2);
+  moistValue4 = analogRead(A3);
 
 
-  tone(buzzerPin, 1175, 500);
-  Serial.print("&location=TRIMM-Kaketoeplant");
+  tone(buzzerPin, 1175, 100);
+  Serial.print("location=TRIMM-Kaketoeplant");
   Serial.print("&moist=" + mapValue(moistValue1));
   Serial.print("&moist=" + mapValue(moistValue2));
   Serial.println("&moist=" + mapValue(moistValue3)); //end with a number value, not a string.
+  Serial.print("location=TRIMM-Aloevera");
+  Serial.println("&moist=" + mapValue(moistValue4)); //end with a number value, not a string.
+
   
   // Serial.println();
 
@@ -79,9 +85,9 @@ void calibrateExtremes() {
   }
 
   digitalWrite(ledPin, LOW);
-  // Serial.println("done calibratin");
-  // Serial.print("extremehigh: " + String(extremeHigh));
-  // Serial.println(", extremeLow: " + String(extremeLow));
+  Serial.println("done calibratin");
+  Serial.print("extremehigh: " + String(extremeHigh));
+  Serial.println(", extremeLow: " + String(extremeLow));
 }
 
 void blink() {
