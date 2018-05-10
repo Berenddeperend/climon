@@ -9,7 +9,8 @@ int moistValue3;
 int caliVal;
 int vvcPin = 13;
 
-int extremeHigh = 964; //vvc via digital pin, three moist sensors connected.
+// int extremeHigh = 964; //vvc via digital pin, three moist sensors connected.
+int extremeHigh = 1023; //vvc via digital pin, three moist sensors connected.
 const int extremeLow = 0; //we'll assume that total wetness is 0. calibrating this would be a hassle.
 
 // int delayTime = (5) * 1000 * 60; //interval for measurements in minutes.
@@ -37,12 +38,12 @@ void loop() {
   Serial.println("&moist=" + mapValue(moistValue3));
 
 
-  //use this for manually calibrating
-  Serial.print("Sensorvalue1: " + String(moistValue1));
-  Serial.print(" Sensorvalue2: " + String(moistValue2));
-  Serial.print(" Sensorvalue3: " + String(moistValue3));
-  Serial.print(" caliValue: " + String(caliVal));
-  Serial.println("");
+  // //use this for manually calibrating
+  // Serial.print("Sensorvalue1: " + String(moistValue1));
+  // Serial.print(" Sensorvalue2: " + String(moistValue2));
+  // Serial.print(" Sensorvalue3: " + String(moistValue3));
+  // Serial.print(" caliValue: " + String(caliVal));
+  // Serial.println("");
 
   digitalWrite(vvcPin, LOW);
 

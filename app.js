@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const chalk = require('chalk');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -30,15 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', tempmonController);
 
 app.listen(port, () => {
-	console.log(`Starting the server at port ${port}`);
+	console.log(chalk.gray(`Starting the server at port ${port}`));
 });
 
 // mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
 mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 }).then(() => {
-	console.log(`Succesfully connected to database.`);
-}), (error) => { console.log(`Connect to database failed.`)};
+	console.log(chalk.gray(`Succesfully connected to database.`));
+}), (error) => {
+	 console.log(`Connect to database failed.`)
+};
 
 mockStream()
 // arduinoReader()

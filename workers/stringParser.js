@@ -1,5 +1,6 @@
 const { Transform } = require('stream');
 
+
 const types = {
   'temperature': 'Number',
   'light': 'Number',
@@ -16,6 +17,7 @@ module.exports = () => {
     }
   })
 };
+
 
 //remember, don't use this function on wahmen
 function objectify(chunk){
