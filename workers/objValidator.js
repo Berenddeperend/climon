@@ -1,5 +1,5 @@
 const { Transform } = require('stream');
-
+const chalk = require('chalk');
 
 module.exports = () => {
 	return new Transform({
@@ -20,8 +20,9 @@ function test(chunk) {
 	) {
 		return chunk;
 	} else {
-		console.log('chunk invalid!');
-		console.log(chunk);
+		console.log(chalk.red('chunk invalid!'));
+		// console.log(chalk.red(chunk));
+		return chunk; //instead of returing, i should reject and log.
 	}
 }
 
