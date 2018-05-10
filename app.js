@@ -13,6 +13,7 @@ const arduinoReader = require('./workers/streamReader');
 const mockStream = require('./workers/mockStream');
 const stringParser = require('./workers/stringParser');
 const objStreamLogger = require('./workers/objStreamLogger');
+const objValidator = require('./workers/objValidator');
 const dbSaver = require('./workers/dbSaver');
 const lightModel = require('./models/light.js').lightModel;
 
@@ -42,5 +43,6 @@ mongoose.connect(config.database.mlab, {
 mockStream()
 // arduinoReader()
 	.pipe(stringParser())
+	.pipe(objValidator())
 	.pipe(objStreamLogger());
 	// .pipe(dbSaver());
