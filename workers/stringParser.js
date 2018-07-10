@@ -35,7 +35,7 @@ function objectify(chunk){
     }
     return acc;
   }, {
-    // timestamp: Date.now()
+    timestamp: Date.now()
   });
 }
 

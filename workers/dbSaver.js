@@ -11,7 +11,6 @@
 
 const { Writable } = require('stream');
 const mongoose = require('mongoose');
-const moment = require('moment');
 
 const RawDataSchema = mongoose.Schema({
 	location: {

@@ -9,22 +9,29 @@ module.exports = () => {
 			done();
 		}
 	});
-}
+};
 
 
 function test(chunk) {
-	if(
-		locationIsString(chunk) &&
-		hasLocation(chunk) &&
-		hasTimestamp(chunk)
-	) {
-		return chunk;
+	if(!hasLocation(chunk)) {
+		console.log(chalk.red(`Doesn't contain a location.`));
+		return chunk; //todo: instead of returning, reject and log.
+
+	} else if (!locationIsString(chunk)){
+		console.log(chalk.red(`property 'location' is not a string`));
+		return chunk; //todo: instead of returning, reject and log.
+
+	} else if(!hasTimestamp(chunk)) {
+		console.log(chalk.red(`Doesn't contain a timestamp.`));
+		return chunk; //todo: instead of returning, reject and log.
+
 	} else {
-		console.log(chalk.red('chunk invalid!'));
-		// console.log(chalk.red(chunk));
-		return chunk; //instead of returing, i should reject and log.
+		//everything went well.
+		return chunk;
 	}
 }
+
+
 
 
 //tests below
