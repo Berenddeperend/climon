@@ -39,12 +39,12 @@ mongoose.connect(config.database.mlab, {
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database.`));
 }), (error) => {
-	 console.log(`Connect to database failed.`)
+	 console.log(chalk.red(`Connect to database failed.`));
 };
 
-mockStream()
-// arduinoReader()
-	.pipe(stringParser())
-	.pipe(objValidator())
-	.pipe(objStreamLogger());
+// mockStream()
+arduinoReader()
+	// .pipe(stringParser())
+	// .pipe(objValidator())
+	// .pipe(objStreamLogger());
 	// .pipe(dbSaver());
