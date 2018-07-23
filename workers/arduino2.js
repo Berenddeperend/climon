@@ -1,28 +1,26 @@
 const { Readable } = require('stream');
 const SerialPort = require('serialport');
-
+const chalk = require('chalk');
 
 module.exports = (comPortString) => {
-	return new Promise((resolve, reject) => {
-		findArduino(comPortString)
-			.then(arduino => {
-				return connectToArduino(arduino);
-			}).then(connection => {
-
-				const stream = new Readable({
-					read(){}
-				});
-
-				connection.on('data', (data) => {
-					stream.push(data.toString());
-				});
-
-				resolve(stream);
-			})
-			.catch(err => {
-				reject(err)
-			});
+	const stream = new Readable({
+		read(){}
 	});
+
+	findArduino(comPortString)
+		.then(arduino => {
+			return connectToArduino(arduino, comPortString);
+		})
+		.then(connection => {
+			connection.on('data', (data) => {
+				stream.push(data.toString());
+			})
+		})
+	.catch(err => {
+		console.log(chalk.red(err));
+	});
+
+	return stream.pipe(new SerialPort.parsers.Readline());
 };
 
 async function findArduino(comPortString) {
@@ -34,10 +32,10 @@ async function findArduino(comPortString) {
 		});
 }
 
-function connectToArduino(arduino) {
+function connectToArduino(arduino, comPortString) {
 	return new Promise((resolve, reject) => {
 		if(!arduino) {
-			reject('did not recieve thing')
+			reject(`No comport found which includes the string '${comPortString}'`);
 		}
 
 		new SerialPort(arduino.comName, function(err) {

@@ -5,7 +5,8 @@ const types = {
   'temperature': 'Number',
   'light': 'Number',
   'moist': 'Number',
-  'location': 'String'
+  'location': 'String',
+  'humidity': 'Number'
 };
 
 module.exports = () => {

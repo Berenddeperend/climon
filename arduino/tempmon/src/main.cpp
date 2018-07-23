@@ -68,12 +68,10 @@ void loop() {
   sensors_event_t event;  
 
 
-
-  dht.temperature().getEvent(&event);
-  dht.humidity().getEvent(&event);
-
   Serial.print("location=Rembrandtlaan"); 
 
+  dht.temperature().getEvent(&event);
+  
   if (isnan(event.temperature)) {
     Serial.println("Error reading temperature!");
   }
@@ -81,6 +79,8 @@ void loop() {
     Serial.print("&temperature=");
     Serial.print(event.temperature);
   }
+
+  dht.humidity().getEvent(&event);
   // Get humidity event and print its value.
   if (isnan(event.relative_humidity)) {
     Serial.println("Error reading humidity!");

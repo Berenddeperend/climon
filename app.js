@@ -47,14 +47,9 @@ mongoose.connect(config.database.mlab, {
 
 // mockStream()
 // arduinoReader()
-arduino2('usb').then(stream => {
-	stream.pipe(logReadableStream());
-}).catch(err => {
-	console.log('got emn');
-	console.log(err)
-});
-		// .pipe(logReadableStream());
-	// .pipe(stringParser())
-	// .pipe(objValidator())
-	// .pipe(objStreamLogger());
+arduino2('usb')
+	// .pipe(logReadableStream())
+	.pipe(stringParser())
+	.pipe(objValidator())
+	.pipe(objStreamLogger());
 	// .pipe(dbSaver());
