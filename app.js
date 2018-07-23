@@ -11,11 +11,14 @@ const tempmonController = require('./controllers/tempmon');
 // const temperatureRecorder = require('./workers/temprecorder');
 const arduinoReader = require('./workers/streamReader');
 const mockStream = require('./workers/mockStream');
+const logReadableStream = require('./workers/logger');
 const stringParser = require('./workers/stringParser');
 const objStreamLogger = require('./workers/objStreamLogger');
 const objValidator = require('./workers/objValidator');
 const dbSaver = require('./workers/dbSaver');
 const lightModel = require('./models/light.js').lightModel;
+
+const arduino2 = require('./workers/arduino2');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -43,7 +46,11 @@ mongoose.connect(config.database.mlab, {
 };
 
 // mockStream()
-arduinoReader()
+// arduinoReader()
+arduino2('usb').then(stream => {
+	stream.pipe(logReadableStream());
+})
+		// .pipe(logReadableStream());
 	// .pipe(stringParser())
 	// .pipe(objValidator())
 	// .pipe(objStreamLogger());

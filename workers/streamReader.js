@@ -9,7 +9,14 @@ const { Transform } = require('stream');
 const newlineParser = new SerialPort.parsers.Readline();
 
 module.exports = () => {
-	return readStreams();
+	// return readStreams();
+	const stream = new Readable({
+		read(){}
+	});
+
+	stream.push(readStreams());
+
+	return stream;
 };
 
 
