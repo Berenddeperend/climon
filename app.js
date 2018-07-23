@@ -49,7 +49,10 @@ mongoose.connect(config.database.mlab, {
 // arduinoReader()
 arduino2('usb').then(stream => {
 	stream.pipe(logReadableStream());
-})
+}).catch(err => {
+	console.log('got emn');
+	console.log(err)
+});
 		// .pipe(logReadableStream());
 	// .pipe(stringParser())
 	// .pipe(objValidator())

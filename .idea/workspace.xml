@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4552d018-5378-494c-b9c7-5299fb11bf27" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/workers/arduino2.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/workers/logger.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change beforePath="$PROJECT_DIR$/workers/streamReader.js" afterPath="$PROJECT_DIR$/workers/streamReader.js" />
+      <change beforePath="$PROJECT_DIR$/workers/arduino2.js" afterPath="$PROJECT_DIR$/workers/arduino2.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,8 +36,8 @@
           <file leaf-file-name="arduino2.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/workers/arduino2.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+                <state relative-caret-position="375">
+                  <caret line="25" column="2" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
@@ -74,7 +72,7 @@
               <file leaf-file-name="streamReader.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/workers/streamReader.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="183">
+                    <state relative-caret-position="227">
                       <caret line="95" column="23" lean-forward="false" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
                       <folding />
                     </state>
@@ -108,8 +106,8 @@
               <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="105">
-                      <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+                    <state relative-caret-position="45">
+                      <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
                       <folding />
                     </state>
                   </provider>
@@ -174,8 +172,8 @@
         <option value="$PROJECT_DIR$/asynctest.js" />
         <option value="$PROJECT_DIR$/workers/streamReader.js" />
         <option value="$PROJECT_DIR$/workers/logger.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/workers/arduino2.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -356,7 +354,7 @@
       <workItem from="1530098605838" duration="10000" />
       <workItem from="1531254919638" duration="14793000" />
       <workItem from="1531691116489" duration="12119000" />
-      <workItem from="1532366164200" duration="1757000" />
+      <workItem from="1532366164200" duration="2907000" />
     </task>
     <task id="LOCAL-00001" summary="Updated environments for heroku">
       <created>1511905891790</created>
@@ -421,17 +419,24 @@
       <option name="project" value="LOCAL" />
       <updated>1531257231130</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Some nice progress on rewriting the arduino connector">
+      <created>1532368436046</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1532368436046</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63433000" />
+    <option name="totallyTimeSpent" value="64583000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1795422" sideWeight="0.4937107" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13365282" sideWeight="0.4937107" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3419355" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
@@ -491,7 +496,8 @@
     <MESSAGE value="Added parsing function for arduino data. Also, the gitignore is getting embarrassing" />
     <MESSAGE value="Changed expected format for the arduino stream." />
     <MESSAGE value="Improved data testing and logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved data testing and logging" />
+    <MESSAGE value="Some nice progress on rewriting the arduino connector" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some nice progress on rewriting the arduino connector" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -812,7 +818,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/workers/streamReader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="227">
           <caret line="95" column="23" lean-forward="false" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
           <folding />
         </state>
@@ -828,16 +834,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+        <state relative-caret-position="45">
+          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/workers/arduino2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="375">
+          <caret line="25" column="2" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
           <folding />
         </state>
       </provider>

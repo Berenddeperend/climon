@@ -2,12 +2,13 @@ const { Readable } = require('stream');
 const SerialPort = require('serialport');
 
 
-module.exports = async (comPortString) => {
-	return new Promise((resolve) => {
+module.exports = (comPortString) => {
+	return new Promise((resolve, reject) => {
 		findArduino(comPortString)
 			.then(arduino => {
 				return connectToArduino(arduino);
 			}).then(connection => {
+
 				const stream = new Readable({
 					read(){}
 				});
@@ -17,6 +18,9 @@ module.exports = async (comPortString) => {
 				});
 
 				resolve(stream);
+			})
+			.catch(err => {
+				reject(err)
 			});
 	});
 };
@@ -32,13 +36,16 @@ async function findArduino(comPortString) {
 
 function connectToArduino(arduino) {
 	return new Promise((resolve, reject) => {
+		if(!arduino) {
+			reject('did not recieve thing')
+		}
+
 		new SerialPort(arduino.comName, function(err) {
 			if (err) {
-				console.log(`error connecting to Arduino ${arduino.comName}:`);
-				console.log(err);
+				reject(`error connecting to Arduino ${arduino.comName}:`);
 			} else {
-				resolve(this);
 				console.log('connected succesfully');
+				resolve(this);
 			}
 		});
 	});
