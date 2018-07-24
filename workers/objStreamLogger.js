@@ -17,9 +17,9 @@ module.exports = () => {
 
       for(let prop in obj) {
         if(prop === "timestamp") {
-	        console.log(`${chalk.green(rightPad(prop, 11))} ${chalk.gray(":")} ${rightPad(format(obj[prop], 'dddd HH:mm:ss'))}`);
+	        console.log(`${chalk.dim(rightPad(prop, 11))} ${chalk.gray(":")} ${rightPad(format(obj[prop], 'dddd HH:mm:ss'))}`);
         } else {
-          console.log(`${chalk.green(rightPad(prop, 11))} ${chalk.gray(":")} ${rightPad(obj[prop])}`);
+          console.log(`${chalk.dim(rightPad(prop, 11))} ${chalk.gray(":")} ${rightPad(obj[prop])}`);
         }
       }
 

@@ -29,13 +29,17 @@ const RawDataSchema = mongoose.Schema({
 		type: [Number],
 		required: false
 	},
+	humidity: {
+		type: [Number],
+		required: false
+	},
 	timestamp: {
 		type: Date,
 		required: true
 	}
-});
+}, {strict: false});
 
-const Model = mongoose.model('atworktest', RawDataSchema);
+const Model = mongoose.model('rembrandtlaan', RawDataSchema);
 
 // temperatureModel.addTemperature(newTemperature, function(){
 //   console.log(`Temperature number ${counter} added.`);
@@ -51,6 +55,6 @@ const databaseSaver = function(){
       done();
     }    
   });
-}
+};
 
 module.exports = databaseSaver;

@@ -1,3 +1,5 @@
+//logs a readable stream.
+
 const { Writable } = require('stream');
 
 module.exports = () => {

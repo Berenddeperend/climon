@@ -19,6 +19,7 @@ const dbSaver = require('./workers/dbSaver');
 const lightModel = require('./models/light.js').lightModel;
 
 const arduino2 = require('./workers/arduino2');
+const databaseSaver2 = require('./workers/dbsaver2');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -41,9 +42,10 @@ mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database.`));
-}), (error) => {
-	 console.log(chalk.red(`Connect to database failed.`));
-};
+}).catch((error) => {
+	 console.log(chalk.red(`Connect to database failed:`));
+	 console.log(chalk.red(error));
+});
 
 // mockStream()
 // arduinoReader()
@@ -51,5 +53,6 @@ arduino2('usb')
 	// .pipe(logReadableStream())
 	.pipe(stringParser())
 	.pipe(objValidator())
-	.pipe(objStreamLogger());
-	// .pipe(dbSaver());
+	.pipe(objStreamLogger())
+	.pipe(dbSaver());
+	// .pipe(databaseSaver2('myname'));

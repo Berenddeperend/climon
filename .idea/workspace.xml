@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4552d018-5378-494c-b9c7-5299fb11bf27" name="Default" comment="Better error handling">
+    <list default="true" id="4552d018-5378-494c-b9c7-5299fb11bf27" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/workers/dbsaver2.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change beforePath="$PROJECT_DIR$/arduino/tempmon/src/main.cpp" afterPath="$PROJECT_DIR$/arduino/tempmon/src/main.cpp" />
+      <change beforePath="$PROJECT_DIR$/asynctest.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/streamtest.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/workers/arduino2.js" afterPath="$PROJECT_DIR$/workers/arduino2.js" />
-      <change beforePath="$PROJECT_DIR$/workers/stringParser.js" afterPath="$PROJECT_DIR$/workers/stringParser.js" />
+      <change beforePath="$PROJECT_DIR$/workers/dbSaver.js" afterPath="$PROJECT_DIR$/workers/dbSaver.js" />
+      <change beforePath="$PROJECT_DIR$/workers/logger.js" afterPath="$PROJECT_DIR$/workers/logger.js" />
+      <change beforePath="$PROJECT_DIR$/workers/objStreamLogger.js" afterPath="$PROJECT_DIR$/workers/objStreamLogger.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,21 +30,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="mockStream.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/mockStream.js">
+          <file leaf-file-name="dbSaver.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/workers/dbSaver.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                <state relative-caret-position="489">
+                  <caret line="41" column="35" lean-forward="false" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="arduino2.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="arduino2.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/workers/arduino2.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+                <state relative-caret-position="495">
+                  <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -48,44 +53,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="vertical" split-proportion="0.7680222">
+        <splitter split-orientation="vertical" split-proportion="0.58040667">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="dbSaver.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/workers/dbSaver.js">
+              <file leaf-file-name="dbsaver2.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/workers/dbsaver2.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="480">
-                      <caret line="32" column="15" lean-forward="false" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="stringParser.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/workers/stringParser.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="120">
-                      <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="streamReader.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/workers/streamReader.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="393">
-                      <caret line="109" column="39" lean-forward="false" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="asynctest.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/asynctest.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="480">
-                      <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+                    <state relative-caret-position="320">
+                      <caret line="46" column="6" lean-forward="false" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
                       <folding />
                     </state>
                   </provider>
@@ -94,22 +69,22 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="logger.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/workers/logger.js">
+            <leaf>
+              <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/app.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+                    <state relative-caret-position="116">
+                      <caret line="52" column="10" lean-forward="true" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/app.js">
+              <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/config/database.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="24">
-                      <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+                    <state relative-caret-position="45">
+                      <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
                       <folding />
                     </state>
                   </provider>
@@ -139,7 +114,11 @@
       <find>isConnnected</find>
       <find>newlineParser</find>
       <find>pipe</find>
+      <find>.cyah=n</find>
     </findStrings>
+    <replaceStrings>
+      <replace>.cyan</replace>
+    </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/workers</dir>
       <dir>$PROJECT_DIR$/config</dir>
@@ -164,18 +143,19 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/workers/queryLight.js" />
         <option value="$PROJECT_DIR$/models/light.js" />
-        <option value="$PROJECT_DIR$/workers/mockStream.js" />
         <option value="$PROJECT_DIR$/workers/objValidator.js" />
-        <option value="$PROJECT_DIR$/workers/dbSaver.js" />
-        <option value="$PROJECT_DIR$/workers/objStreamLogger.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/asynctest.js" />
         <option value="$PROJECT_DIR$/workers/streamReader.js" />
-        <option value="$PROJECT_DIR$/workers/logger.js" />
-        <option value="$PROJECT_DIR$/workers/arduino2.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/workers/stringParser.js" />
+        <option value="$PROJECT_DIR$/workers/objStreamLogger.js" />
+        <option value="$PROJECT_DIR$/workers/arduino2.js" />
+        <option value="$PROJECT_DIR$/workers/logger.js" />
+        <option value="$PROJECT_DIR$/workers/mockStream.js" />
+        <option value="$PROJECT_DIR$/workers/dbsaver2.js" />
+        <option value="$PROJECT_DIR$/workers/dbSaver.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -197,7 +177,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
+    <option name="x" value="1920" />
+    <option name="y" value="323" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -219,8 +200,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,7 +210,7 @@
             <path>
               <item name="tempmon" type="b2602c69:ProjectViewProjectNode" />
               <item name="tempmon" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="tempmon" type="b2602c69:ProjectViewProjectNode" />
@@ -242,6 +221,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,7 +337,8 @@
       <workItem from="1530098605838" duration="10000" />
       <workItem from="1531254919638" duration="14793000" />
       <workItem from="1531691116489" duration="12119000" />
-      <workItem from="1532366164200" duration="4228000" />
+      <workItem from="1532366164200" duration="6885000" />
+      <workItem from="1532428259025" duration="4438000" />
     </task>
     <task id="LOCAL-00001" summary="Updated environments for heroku">
       <created>1511905891790</created>
@@ -435,17 +417,24 @@
       <option name="project" value="LOCAL" />
       <updated>1532371531898</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Finished the temp sensor, time to celebrate with some beers!">
+      <created>1532372888875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1532372888875</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65904000" />
+    <option name="totallyTimeSpent" value="72999000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
+    <frame x="1920" y="323" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13365282" sideWeight="0.4937107" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13519314" sideWeight="0.4937107" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3419355" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
@@ -507,20 +496,48 @@
     <MESSAGE value="Improved data testing and logging" />
     <MESSAGE value="Some nice progress on rewriting the arduino connector" />
     <MESSAGE value="Better error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better error handling" />
+    <MESSAGE value="Finished the temp sensor, time to celebrate with some beers!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished the temp sensor, time to celebrate with some beers!" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointLogExpression">
+      <expression>
+        <expression-string>ocation: {
+		type: String,
+		required: true
+	},
+	temperature: {
+		type: [Number],
+		required: false
+  },
+  light: {
+		type: [Number],
+		required: false
+	},
+	moist: {
+		type: [Number],
+		required: false
+	},
+	humidity: {
+		type: [Number],
+		required: false
+	},
+	timestamp: {
+		type: Date,
+		required: true
+	}</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/light.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.sample.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -532,7 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -584,7 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -651,13 +666,6 @@
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="150">
           <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -773,57 +781,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/streamtest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asynctest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/dbSaver.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="15" lean-forward="false" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/objStreamLogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/mockStream.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/logger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/workers/objValidator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
           <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/streamReader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="91" column="15" lean-forward="true" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -831,30 +799,68 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asynctest.js" />
+    <entry file="file://$PROJECT_DIR$/streamtest.js" />
+    <entry file="file://$PROJECT_DIR$/workers/logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/mockStream.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/objStreamLogger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="2" lean-forward="true" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/arduino2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/dbsaver2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="46" column="6" lean-forward="false" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+        <state relative-caret-position="116">
+          <caret line="52" column="10" lean-forward="true" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workers/arduino2.js">
+    <entry file="file://$PROJECT_DIR$/workers/dbSaver.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/streamReader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="109" column="39" lean-forward="false" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
+        <state relative-caret-position="489">
+          <caret line="41" column="35" lean-forward="false" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
           <folding />
         </state>
       </provider>

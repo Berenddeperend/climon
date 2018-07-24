@@ -42,7 +42,7 @@ function connectToArduino(arduino, comPortString) {
 			if (err) {
 				reject(`error connecting to Arduino ${arduino.comName}:`);
 			} else {
-				console.log('connected succesfully');
+				console.log(chalk.green(`Connected succesfully to device ${arduino.comName}!`));
 				resolve(this);
 			}
 		});
