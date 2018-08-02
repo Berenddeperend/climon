@@ -31,15 +31,13 @@ const climateSchema = mongoose.Schema({
 	}
 });
 
-//model is the table/collection. 
-const climateModel = mongoose.model('climateModel', climateSchema);
+//model is the table/collection. An instance of a modal is a document.
+const ClimateModel = mongoose.model('climateModel', climateSchema);
 
 //document is an entry
 const add = function(document, callback) {
     document.save(callback);
 };
-
-
 
 //get all documents
 const getAll = function() {
@@ -55,7 +53,9 @@ const getAll = function() {
     });
 };
 
-module.exports.climateModel = climateModel;
+module.exports.test = "hello";
+
+module.exports.ClimateModel = ClimateModel;
 module.exports.climateSchema = climateSchema;
 module.exports.add = add;
 module.exports.getAll = getAll;

@@ -1,55 +1,21 @@
 const { Writable } = require('stream');
 const mongoose = require('mongoose');
+const climateModel = require('../models/any');
 
-const dataTypes = {
-	location: {
-		type: String,
-		required: true
-	},
-	temperature: {
-		type: Number,
-		required: false
-	},
-	light: {
-		type: Number,
-		required: false
-	},
-	moist: {
-		type: Number,
-		required: false
-	},
-	humidity: {
-		type: Number,
-		required: false
-	},
-	timestamp: {
-		type: Date,
-		required: true
-	}
-};
-
-const CreateModel = function(data, modelName) {
-	let schemaObj = {};
-
-	for (const prop in data) {
-		schemaObj[prop] = dataTypes[prop];
-	}
-
-	console.log(schemaObj);
-
-	return new mongoose.model(modelName, new mongoose.Schema(schemaObj));
-};
-
-const databaseSaver2 = function(modelName){
+const databaseSaver2 = function(){
 	return new Writable({
 		objectMode: true,
 		write(obj, encoding, done){
-			let model = CreateModel(obj, modelName);
-			model.save();
+			//an instance of a model is a document.
+			let document = new climateModel.ClimateModel(obj)
+			document.save(err => {
+				console.log(err);
+			});
+
 			done();
 		}
 	});
 
-};
+}; 
 
 module.exports = databaseSaver2;

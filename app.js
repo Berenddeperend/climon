@@ -47,12 +47,12 @@ mongoose.connect(config.database.mlab, {
 	 console.log(chalk.red(error));
 });
 
-// mockStream()
+mockStream()
 // arduinoReader()
-arduino2('usb')
+// arduino2('usb')
 	// .pipe(logReadableStream())
 	.pipe(stringParser())
 	.pipe(objValidator())
 	.pipe(objStreamLogger())
-	.pipe(dbSaver());
-	// .pipe(databaseSaver2('myname'));
+	// .pipe(dbSaver());
+	.pipe(databaseSaver2());

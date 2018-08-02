@@ -26,6 +26,6 @@
   "devDependencies": {
     "@angular/cli": "^1.5.0",
     "concurrently": "^3.5.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.18.3"
   }
 }

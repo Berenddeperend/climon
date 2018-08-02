@@ -50,8 +50,6 @@ const databaseSaver = function(){
   return new Writable({
     objectMode: true,
     write(obj, encoding, done){
-    	console.log(obj);
-
       let model = new Model(obj);
       model.save();
       done();
