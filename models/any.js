@@ -3,9 +3,6 @@
 
 const mongoose = require('mongoose');
 
-//model is the table/collection. 
-const climateModel = mongoose.model('climateModel', climateSchema);
-
 //schema is the shape the documents will have
 const climateSchema = mongoose.Schema({
 	location: {
@@ -15,8 +12,8 @@ const climateSchema = mongoose.Schema({
 	temperature: {
 		type: [Number],
 		required: false
-  },
-  light: {
+	},
+	light: {
 		type: [Number],
 		required: false
 	},
@@ -34,10 +31,15 @@ const climateSchema = mongoose.Schema({
 	}
 });
 
+//model is the table/collection. 
+const climateModel = mongoose.model('climateModel', climateSchema);
+
 //document is an entry
 const add = function(document, callback) {
-    document.save(callback)
-}
+    document.save(callback);
+};
+
+
 
 //get all documents
 const getAll = function() {
@@ -51,10 +53,9 @@ const getAll = function() {
                 resolve(res);
             });
     });
-}
+};
 
 module.exports.climateModel = climateModel;
 module.exports.climateSchema = climateSchema;
-module.exports.addClimateDocument = addClimateDocument;
 module.exports.add = add;
 module.exports.getAll = getAll;

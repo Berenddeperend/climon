@@ -57,8 +57,9 @@ void setup() {
   // Serial.println("------------------------------------");
   // Set delay between sensor readings based on sensor details.
   // delayMS = sensor.min_delay / 1000;
-  delayMS = 900000; //15 minutes
-  // delayMS = 2000; //15 minutes
+  // delayMS = 900000; //15 minutes
+  // delayMS = 5000; //5 seconds
+  delayMS = 25000; //5 minutes
 }
 
 void loop() {
