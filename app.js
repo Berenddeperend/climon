@@ -26,7 +26,7 @@ const port = process.env.PORT || 4000;
 let isLocal = port === 4000;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
@@ -42,17 +42,21 @@ mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database.`));
+	// const collections = tempmonController.fetchCollections();
+	console.log(mongoose.connection.modelNames());
+
 }).catch((error) => {
-	 console.log(chalk.red(`Connect to database failed:`));
-	 console.log(chalk.red(error));
+	console.log(chalk.red(`Connect to database failed:`));
+	console.log(chalk.red(error));
 });
+
 
 mockStream()
 // arduinoReader()
 // arduino2('usb')
-	// .pipe(logReadableStream())
-	.pipe(stringParser())
-	.pipe(objValidator())
-	.pipe(objStreamLogger())
-	// .pipe(dbSaver());
-	.pipe(databaseSaver2());
+// .pipe(logReadableStream())
+		.pipe(stringParser())
+		.pipe(objValidator())
+// .pipe(objStreamLogger())
+// .pipe(dbSaver());
+// .pipe(databaseSaver2());

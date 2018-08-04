@@ -45,12 +45,16 @@ module.exports.getAll = () => {
 };
 
 module.exports.getEachHour = () => {
+	const startDate = new Date();
+
 	return new Promise(function(resolve, reject){
 		Temperature.find({})
 		.exec(function(err, data){
 			if(err) {
 				reject(err);
 			} else {
+				console.log('Time until fetching all from database:');
+				console.log(`${(new Date() - startDate) / 1000} s`);
 				return data;
 			}
 		}).then(function(data){
@@ -62,6 +66,8 @@ module.exports.getEachHour = () => {
 				}
 			});
 
+			console.log('Time until filtered:');
+			console.log(`${(new Date() - startDate) / 1000} s`);
 			resolve(arr);
 		});
 	});

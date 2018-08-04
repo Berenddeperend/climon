@@ -41,16 +41,29 @@ const add = function(document, callback) {
 
 //get all documents
 const getAll = function() {
-    return new Promise((resolve, reject) => {
-        climateModel
-            .find()
-            .exec((err, res) => {
-                if(err) {
-                    reject(err);
-                }
-                resolve(res);
-            });
-    });
+  return new Promise((resolve, reject) => {
+    ClimateModel
+      .find()
+      .exec((err, res) => {
+          if(err) {
+              reject(err);
+          }
+          resolve(res);
+      });
+  });
+};
+
+const getAllFromAnyModel = function(modelName) {
+	return new Promise((resolve, reject) => {
+		mongoose.model(modelName)
+			.find()
+			.exec((err, res) => {
+				if(err) {
+					reject(err);
+				}
+				resolve(res);
+			});
+	});
 };
 
 module.exports.test = "hello";
@@ -59,3 +72,4 @@ module.exports.ClimateModel = ClimateModel;
 module.exports.climateSchema = climateSchema;
 module.exports.add = add;
 module.exports.getAll = getAll;
+module.exports.getAllFromAnyModel = getAllFromAnyModel;

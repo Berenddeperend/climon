@@ -7,9 +7,11 @@ const databaseSaver2 = function(){
 		objectMode: true,
 		write(obj, encoding, done){
 			//an instance of a model is a document.
-			let document = new climateModel.ClimateModel(obj)
+			let document = new climateModel.ClimateModel(obj);
 			document.save(err => {
-				console.log(err);
+				if(err) {
+					console.log(err);
+				}
 			});
 
 			done();
