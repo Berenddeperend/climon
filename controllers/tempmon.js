@@ -18,16 +18,16 @@ router.get('/api/collections', (req, res) => {
 
 router.get('/climon/data', (req, res) => {
 	anyModel.getAll()
-					.then((data) => {
-						res.json(data);
-					});
+			.then((data) => {
+				res.json(data);
+			});
 });
 
 router.get('/climon/data/:modelname', (req, res) => {
 	anyModel.getAllFromAnyModel(req.params.modelname)
-					.then((data) => {
-						res.json(data);
-					});
+			.then((data) => {
+				res.json(data);
+			});
 });
 
 router.get('/tempmon/data', (req, res) => {
@@ -39,9 +39,11 @@ router.get('/tempmon/data', (req, res) => {
 	});
 });
 
+
 function fetchCollections() {
 	//might be unneccissary, (mongoose.connection.modelNames();
-	return Object.keys(mongoose.connection.collections);
+	// return Object.keys(mongoose.connection.collections);
+	return mongoose.connection.modelNames();
 }
 
 module.exports = router;

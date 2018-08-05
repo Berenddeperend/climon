@@ -17,6 +17,7 @@ const objStreamLogger = require('./workers/objStreamLogger');
 const objValidator = require('./workers/objValidator');
 const dbSaver = require('./workers/dbSaver');
 const lightModel = require('./models/light.js').lightModel;
+const anyModel = require('./models/any');
 
 const arduino2 = require('./workers/arduino2');
 const databaseSaver2 = require('./workers/dbsaver2');
@@ -42,8 +43,11 @@ mongoose.connect(config.database.mlab, {
 	useMongoClient: true
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database.`));
-	// const collections = tempmonController.fetchCollections();
-	console.log(mongoose.connection.modelNames());
+	
+	const collections = tempmonController.fetchCollections();
+	// anyModel.getAllFromAnyModel(collections[2]).then(data => {
+	// 	console.log(data);
+	// })
 
 }).catch((error) => {
 	console.log(chalk.red(`Connect to database failed:`));
