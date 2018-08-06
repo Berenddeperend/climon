@@ -72,4 +72,6 @@ module.exports.ClimateModel = ClimateModel;
 module.exports.climateSchema = climateSchema;
 module.exports.add = add;
 module.exports.getAll = getAll;
+
+//shouldn't be here probably
 module.exports.getAllFromAnyModel = getAllFromAnyModel;
