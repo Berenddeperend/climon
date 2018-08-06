@@ -13,7 +13,10 @@ module.exports = () => {
 
 
 function test(chunk) {
-	if(!hasLocation(chunk)) {
+	if (chunk === undefined) {
+		console.log(chalk.red(`Chunk is 'undefined'.`));
+
+	} else if(!hasLocation(chunk)) {
 		console.log(chalk.red(`Doesn't contain a location.`));
 		return chunk; //todo: instead of returning, reject and log.
 
