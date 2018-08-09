@@ -9,7 +9,6 @@ mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const tempmonController = require('./controllers/tempmon');
 // const temperatureRecorder = require('./workers/temprecorder');
-const arduinoReader = require('./workers/streamReader');
 const mockStream = require('./workers/mockStream');
 const logReadableStream = require('./workers/logger');
 const stringParser = require('./workers/stringParser');
@@ -55,12 +54,11 @@ mongoose.connect(config.database.mlab, {
 });
 
 
-mockStream()
-// arduinoReader()
-// arduino2('usb')
+// mockStream()
+arduino2('usb')
 // .pipe(logReadableStream())
 		.pipe(stringParser())
 		.pipe(objValidator())
-// .pipe(objStreamLogger())
-// .pipe(dbSaver());
-// .pipe(databaseSaver2());
+		.pipe(objStreamLogger())
+		// .pipe(dbSaver());
+.pipe(databaseSaver2());
