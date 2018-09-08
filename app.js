@@ -37,22 +37,31 @@ app.listen(port, () => {
 	console.log(chalk.gray(`Starting the server at port ${port}`));
 });
 
-// mongoose.connect(isLocal ? config.database.local : config.database.mlab , {
-mongoose.connect(config.database.mlab, {
+mongoose.connect(config.database.local, {
 	useMongoClient: true
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database.`));
 	
 	const collections = tempmonController.fetchCollections();
-	// anyModel.getAllFromAnyModel(collections[2]).then(data => {
+
+	console.log(collections);
+
+
+	// anyModel.getAllFromAnyModel(collections[1]).then(data => {
 	// 	console.log(data);
+	// })
+
+	// anyModel.getGroupedByHour().then(data => {
+	// 	// console.log(data);
+	// 	data.map(item => {
+	// 		console.log(`${item._id.hour} uur: ${item.Gemiddeld},    aantal: ${item.Aantal}`)
+	// 	})
 	// })
 
 }).catch((error) => {
 	console.log(chalk.red(`Connect to database failed:`));
 	console.log(chalk.red(error));
 });
-
 
 // mockStream()
 arduino2('usb')

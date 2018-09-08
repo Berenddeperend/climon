@@ -53,6 +53,35 @@ const getAll = function() {
   });
 };
 
+const getGroupedByHour = function() {
+	console.log('getting...');
+
+	return new Promise((resolve, reject) => {
+		ClimateModel
+			.aggregate(
+				[{
+					$group: {
+						_id: {
+								'hour': { $hour: '$timestamp' }
+							},
+						Gemiddeld: { $avg: { $avg: '$temperature' } },
+						Aantal: { $sum: 1 }
+					}
+				}, {
+					$sort: { '_id': 1}
+				}
+			])
+			.exec((err, res) => {
+				console.log('execcing...');
+
+				if(err) {
+					reject(err);
+				}
+				resolve(res);
+			});
+	});
+};
+
 const getAllFromAnyModel = function(modelName) {
 	return new Promise((resolve, reject) => {
 		mongoose.model(modelName)
@@ -72,6 +101,8 @@ module.exports.ClimateModel = ClimateModel;
 module.exports.climateSchema = climateSchema;
 module.exports.add = add;
 module.exports.getAll = getAll;
+
+module.exports.getGroupedByHour = getGroupedByHour;
 
 //shouldn't be here probably
 module.exports.getAllFromAnyModel = getAllFromAnyModel;

@@ -1,6 +1,3 @@
-// const logins = require('./passwords');
-
-
 // 27017 is the default port number.
 module.exports = {
 	database: {
