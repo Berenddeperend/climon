@@ -1,60 +1,22 @@
-/**
- * Deze module krijgt een stream aan objecten.
- * Deze objecten moeten geparsed worden. 
- * Maak een switch/case voor ieder type data.
- * ieder type data krijgt zijn eigen database model
- * En deze wordt opgeslagen.
- * 
- * Maar eerst sla ik denk ik gewoon de data 'dom' op.
- */
-
-
 const { Writable } = require('stream');
-const mongoose = require('mongoose');
+const berendModel = require('../models/any');
 
-const RawDataSchema = mongoose.Schema({
-	location: {
-		type: String,
-		required: true
-	},
-	temperature: {
-		type: [Number],
-		required: false
-  },
-  light: {
-		type: [Number],
-		required: false
-	},
-	moist: {
-		type: [Number],
-		required: false
-	},
-	humidity: {
-		type: [Number],
-		required: false
-	},
-	timestamp: {
-		type: Date,
-		required: true
-	}
-});
+const dbSaver = function(){
+	return new Writable({
+		objectMode: true,
+		write(obj, encoding, done){
+			//an instance of a model is a document.
+			let document = new berendModel.BerendModel(obj);
+			document.save(err => {
+				if(err) {
+					console.log(err);
+				}
+			});
 
-// const Model = mongoose.model('rembrandtlaan', RawDataSchema);
+			done();
+		}
+	});
 
-// temperatureModel.addTemperature(newTemperature, function(){
-//   console.log(`Temperature number ${counter} added.`);
-// });
+}; 
 
-
-const databaseSaver = function(){
-  return new Writable({
-    objectMode: true,
-    write(obj, encoding, done){
-      let model = new Model(obj);
-      model.save();
-      done();
-    }    
-  });
-};
-
-module.exports = databaseSaver;
+module.exports = dbSaver;

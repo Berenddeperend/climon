@@ -1,48 +1,31 @@
 //general
 require('dotenv').config();
 const chalk = require('chalk');
-const path = require('path');
-const mongoose = require('mongoose');
 const config = require('./config/database');
+const port = process.env.PORT || 4000;
 
 //models
 const anyModel = require('./models/any');
 const climateModel = require('./models/climate');
 
 //controllers
-const tempmonController = require('./controllers/tempmon');
 
 //server
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const app = express();
-const port = process.env.PORT || 4000;
-let isLocal = port === 4000;
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', tempmonController);
-app.listen(port, () => {
-	console.log(chalk.gray(`Starting the server at port ${port}`));
-});
-
-//views
+const server = require('./server/server');
+server.init(port);
 
 //workers
 const mockStream = require('./workers/mockStream');
-const logReadableStream = require('./workers/logger');
+const logStream = require('./workers/logger');
 const stringParser = require('./workers/stringParser');
-const objStreamLogger = require('./workers/objStreamLogger');
+const prettyPrintObject = require('./workers/objStreamLogger');
 const objValidator = require('./workers/objValidator');
+const arduino = require('./workers/arduino');
 const dbSaver = require('./workers/dbSaver');
-const arduino2 = require('./workers/arduino2');
-const databaseSaver2 = require('./workers/dbsaver2');
 
-
-
-
+//database
+const mongoose = require('mongoose');
+let isLocal = port === 4000;
 
 
 
@@ -51,27 +34,8 @@ mongoose.connect(config.database.mlab, {
 }).then(() => {
 	console.log(chalk.gray(`Succesfully connected to database ${mongoose.connection.host}`));
 
-	const collections = tempmonController.fetchCollections();
-
+	const collections = mongoose.connection.modelNames();
 	console.log(collections);
-
-
-	// anyModel.getAllFromAnyModel(collections[2]).then(data => {
-	// 	console.log(data);
-	// })
-
-	// anyModel.getAll().then(data => {
-	// 	console.log(data);
-	// })
-
-	climateModel.getGroupedByHour().then(data => {
-		if(!data.length) {
-			console.log('no results found.');
-		}
-		data.map(item => {
-			console.log(`${item._id.hour} uur: ${item.Gemiddeld},    aantal: ${item.Aantal}`)
-		})
-	})
 
 }).catch((error) => {
 	console.log(chalk.red(`Connect to database failed:`));
@@ -79,10 +43,10 @@ mongoose.connect(config.database.mlab, {
 });
 
 // mockStream()
-arduino2('usb')
-// 	.pipe(logReadableStream())
-		.pipe(stringParser())
-		.pipe(objValidator())
-		.pipe(objStreamLogger())
-		// .pipe(dbSaver());
-		// .pipe(databaseSaver2());
+// arduino('usb')
+// 		.pipe(logStream({objectMode: false}))
+// 		.pipe(stringParser())
+// 		.pipe(objValidator())
+// 		.pipe(prettyPrintObject())
+// 		.pipe(logStream({objectMode: true}));
+// 		.pipe(dbSaver());
