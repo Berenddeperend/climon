@@ -58,9 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# Secret passwords file
-config/passwords.js
-
 # User-specific stuff:
 
 \.idea

@@ -20,7 +20,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "moment": "^2.19.1",
-    "mongoose": "^4.12.5",
+    "mongoose": "^5.2.13",
     "serialport": "^6.2.1"
   },
   "devDependencies": {

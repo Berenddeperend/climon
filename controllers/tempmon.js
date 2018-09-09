@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const temperatureModel = require('../models/temperature');
+const temperatureModel = require('../models/Temperature');
 const anyModel = require('../models/any');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -42,8 +42,17 @@ router.get('/tempmon/data', (req, res) => {
 
 function fetchCollections() {
 	//might be unneccissary, (mongoose.connection.modelNames();
+
+	// return mongoose
 	// return Object.keys(mongoose.connection.collections);
-	return mongoose.connection.modelNames();
+
+	// return mongoose.connection.modelNames();
+	// return mongoose.connection.collections;
+	// return mongoose.connection.config;
+	// return mongoose.connection.db;
+	// return mongoose.connection;
+
+
 }
 
 module.exports = router;

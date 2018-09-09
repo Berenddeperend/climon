@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 
 //schema is the shape the documents will have
-const climateSchema = mongoose.Schema({
+const temperatureSchema = mongoose.Schema({
 	location: {
 		type: String,
 		required: true
@@ -32,7 +32,7 @@ const climateSchema = mongoose.Schema({
 });
 
 //model is the table/collection. An instance of a modal is a document.
-const ClimateModel = mongoose.model('climateModel', climateSchema);
+const TemperatureModel = mongoose.model('temperatureModel', temperatureSchema, 'temperatures');
 
 //document is an entry
 const add = function(document, callback) {
@@ -42,7 +42,7 @@ const add = function(document, callback) {
 //get all documents
 const getAll = function() {
   return new Promise((resolve, reject) => {
-    ClimateModel
+    TemperatureModel
       .find()
       .exec((err, res) => {
           if(err) {
@@ -57,7 +57,7 @@ const getGroupedByHour = function() {
 	console.log('getting...');
 
 	return new Promise((resolve, reject) => {
-		ClimateModel
+		TemperatureModel
 			.aggregate(
 				[{
 					$group: {
@@ -97,8 +97,8 @@ const getAllFromAnyModel = function(modelName) {
 
 module.exports.test = "hello";
 
-module.exports.ClimateModel = ClimateModel;
-module.exports.climateSchema = climateSchema;
+// module.exports.BerendModel = BerendModel;
+// module.exports.climateSchema = climateSchema;
 module.exports.add = add;
 module.exports.getAll = getAll;
 

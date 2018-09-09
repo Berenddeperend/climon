@@ -39,7 +39,7 @@ const RawDataSchema = mongoose.Schema({
 	}
 });
 
-const Model = mongoose.model('rembrandtlaan', RawDataSchema);
+// const Model = mongoose.model('rembrandtlaan', RawDataSchema);
 
 // temperatureModel.addTemperature(newTemperature, function(){
 //   console.log(`Temperature number ${counter} added.`);

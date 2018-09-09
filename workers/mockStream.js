@@ -27,7 +27,7 @@ module.exports = () => {
 function randomStringBuilder() {
 
 	//note: don't add timestmap here. Arduino doesn't do this for us, we'll do it on obj parse.
-	return `location=TRIMM-Kaketoeplant&temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}`;
+	return `location=Berend&temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}`;
 
 	function randomNumberAsString() {
 		return String(Math.round(Math.random() * 1023));
