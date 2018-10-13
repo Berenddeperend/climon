@@ -11,18 +11,22 @@ const temperatureSchema = mongoose.Schema({
 	},
 	temperature: {
 		type: [Number],
+		default: undefined,
 		required: false
 	},
 	light: {
 		type: [Number],
+		default: undefined,
 		required: false
 	},
 	moist: {
 		type: [Number],
+		default: undefined,
 		required: false
 	},
 	humidity: {
 		type: [Number],
+		default: undefined,
 		required: false
 	},
 	timestamp: {
