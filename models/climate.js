@@ -17,34 +17,10 @@ const climateModel = new Influx.InfluxDB({
 //  ]
 })
 
-const query = function() {
-  // return climateModel.query(`
-  //   select * from climon
-  // `)
+const query = function(query) {
   // SELECT mean("light") AS "mean_light" FROM "climon"."autogen"."light(measurement)" WHERE time > now() - 6h GROUP BY time(1000s);
-  return climateModel.query(`
-    SELECT mean("light") AS "mean_light" FROM "climon"."autogen"."light(measurement)" WHERE time > now() - 6h GROUP BY time(1000s);
-  `)
+  return climateModel.query(query)
 }
-
-
-// influx.writePoints([
-//   {
-//     measurement: 'response_times',
-//     tags: { host: os.hostname() },
-//     fields: { duration, path: req.path },
-//   }
-// ]).then(() => {
-//   return influx.query(`
-//     select * from response_times
-//     where host = ${Influx.escape.stringLit(os.hostname())}
-//     order by time desc
-//     limit 10
-//   `)
-// }).then(rows => {
-//   rows.forEach(row => console.log(`A request to ${row.path} took ${row.duration}ms`))
-// })
-
 
 module.exports.climateModel = climateModel;
 module.exports.query = query;

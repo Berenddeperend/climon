@@ -13,6 +13,8 @@ module.exports = () => {
 		}
 	});
 
+	readStream.push(randomStringBuilder());
+
 	setInterval(() => {
 		if (isAlive) {
 			readStream.push(randomStringBuilder());
@@ -27,7 +29,8 @@ module.exports = () => {
 function randomStringBuilder() {
 
 	//note: don't add timestmap here. Arduino doesn't do this for us, we'll do it on obj parse.
-	return `location=Berend&temperature=${randomNumberAsString()}&temperature=${randomNumberAsString()}&light=${randomNumberAsString()}`;
+	// return `tag/location=Berend&field/temperature=${randomNumberAsString()}&field/temperature=${randomNumberAsString()}&field/light=${randomNumberAsString()}`;
+	return `measurement=klimaat&tag/String/location=Testlocatie 1&field/Number/temperature=${randomNumberAsString()}&field/Number/temperature=${randomNumberAsString()}&field/Number/light=${randomNumberAsString()}`;
 
 	function randomNumberAsString() {
 		return String(Math.round(Math.random() * 1023));

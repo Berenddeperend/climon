@@ -26,17 +26,21 @@ const dbSaver = require('./workers/dbSaver');
 //database
 let isLocal = port === 4000;
 
-climateModel.query().then(result => {
-	console.log(result);
+climateModel.query(`
+	select * from "klimaat"
+`).then(result => {
+	result.map(entry => {
+		console.log(entry, entry.time.toNanoISOString())
+	})
 });
 
 
 mockStream()
 // arduino('usb')
 // 		.pipe(logStream({objectMode: false}))
-		.pipe(stringParser())
-		// .pipe(stringToInfluxObjs())
+		// .pipe(stringParser())
+		.pipe(stringToInfluxObjs())
 		// .pipe(objValidator())
 		// .pipe(prettyPrintObject())
-// 		.pipe(logStream({objectMode: true}));
+		// .pipe(logStream({objectMode: true}))
 		// .pipe(dbSaver());
