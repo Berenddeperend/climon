@@ -3,19 +3,16 @@ const Influx = require('influx');
 const climateModel = new Influx.InfluxDB({
  host: 'localhost',
  database: 'climon',
-//  schema: [
-//    {
-//      measurement: 'moisture',
-//      fields: {
-//        path: Influx.FieldType.STRING,
-//        duration: Influx.FieldType.INTEGER
-//      },
-//      tags: [
-//        'host'
-//      ]
-//    }
-//  ]
 })
+
+const initClimonDb = function() {
+  const influx = new Influx.InfluxDB({ host: "localhost" });
+  influx.getDatabaseNames().then(dbNames => { 
+    if(!dbNames.includes('climon')) {
+      Influx.createDataBase('climon');
+    } 
+  });
+}
 
 const query = function(query) {
   // SELECT mean("light") AS "mean_light" FROM "climon"."autogen"."light(measurement)" WHERE time > now() - 6h GROUP BY time(1000s);
@@ -23,4 +20,5 @@ const query = function(query) {
 }
 
 module.exports.climateModel = climateModel;
+module.exports.initClimonDb = initClimonDb;
 module.exports.query = query;

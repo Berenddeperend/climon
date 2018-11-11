@@ -28,7 +28,6 @@ module.exports = () => {
 //Arduino should be in charge of normalizing the data, not the backend. 
 function randomStringBuilder() {
 
-	//note: don't add timestmap here. Arduino doesn't do this for us, we'll do it on obj parse.
 	// return `tag/location=Berend&field/temperature=${randomNumberAsString()}&field/temperature=${randomNumberAsString()}&field/light=${randomNumberAsString()}`;
 	return `measurement=klimaat&tag/String/location=Testlocatie 1&field/Number/temperature=${randomNumberAsString()}&field/Number/temperature=${randomNumberAsString()}&field/Number/light=${randomNumberAsString()}`;
 

@@ -59,7 +59,7 @@ void setup() {
   // delayMS = sensor.min_delay / 1000;
   // delayMS = 900000; //15 minutes
   // delayMS = 5000; //5 seconds
-  delayMS = 25000; //5 minutes
+  delayMS = 300000; //5 minutes
 }
 
 void loop() {
