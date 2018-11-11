@@ -9,7 +9,7 @@ const initClimonDb = function() {
   const influx = new Influx.InfluxDB({ host: "localhost" });
   influx.getDatabaseNames().then(dbNames => { 
     if(!dbNames.includes('climon')) {
-      Influx.createDataBase('climon');
+      influx.createDataBase('climon');
     } 
   });
 }
