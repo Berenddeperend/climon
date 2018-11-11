@@ -9,9 +9,10 @@ const initClimonDb = function() {
   const influx = new Influx.InfluxDB({ host: "localhost" });
   influx.getDatabaseNames().then(dbNames => { 
     if(!dbNames.includes('climon')) {
-      influx.createDataBase('climon');
+      influx.createDatabase('climon');
     } 
   });
+
 }
 
 const query = function(query) {
