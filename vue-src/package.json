@@ -7,11 +7,15 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "element-ui": "^2.4.11",
+    "highcharts": "^6.2.0",
+    "highcharts-vue": "^1.2.0",
     "vue": "^2.5.16"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
     "@vue/cli-service": "^3.0.0-rc.10",
+    "date-fns": "^1.29.0",
     "vue-template-compiler": "^2.5.16"
   }
 }

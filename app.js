@@ -5,7 +5,8 @@ const config = require('./config/database');
 const port = process.env.PORT || 4000;
 
 //models
-const climateModel = require('./models/climate');
+const { climateModel, initClimonDb } = require('./models/climate'); 
+const models = require('./models/general');
 
 //controllers
 
@@ -23,25 +24,27 @@ const objValidator = require('./workers/objValidator');
 const arduino = require('./workers/arduino');
 const dbSaver = require('./workers/dbSaver');
 
-//database
+//database 
 let isLocal = port === 4000;
-climateModel.initClimonDb();
-
-// climateModel.query(`
-// 	select * from "klimaat"
-// `).then(result => {
-// 	result.map(entry => {
-// 		console.log(entry, entry.time.toNanoISOString())
-// 	})
-// });
+initClimonDb();
 
 
-// mockStream()
-arduino('usb')
-// 		.pipe(logStream({objectMode: false}))
-		// .pipe(stringParser())
+// SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
+climateModel.query(`
+SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht"
+`).then(result => {
+	console.log(result.length)
+	result.map(entry => {
+		console.log(entry, entry.time.toNanoISOString())
+	})
+});
+
+
+mockStream()
+// arduino('usb')
+		// .pipe(logStream({objectMode: false}))
 		.pipe(stringToInfluxObjs())
 		// .pipe(objValidator())
 		// .pipe(prettyPrintObject())
-		.pipe(logStream({objectMode: true}))
-		.pipe(dbSaver());
+		// .pipe(logStream({objectMode: true}))
+		// .pipe(dbSaver());

@@ -5,6 +5,8 @@ const cors = require('cors');
 const path = require('path');
 const router = express.Router();
 
+const climateModel = require('../models/climate').climateModel;
+
 
 //declare routes here
 //routes should use controllers
@@ -13,26 +15,26 @@ const router = express.Router();
 // router.get('/', (req, res) => {
 // 	res.sendFile(path.join(__dirname + '/../public/index.html'));
 // });
-//
-//
-// router.get('/api/collections', (req, res) => {
-// 	console.log('giving the modelnames');
-// 	res.json(fetchCollections());
-// });
-//
-// router.get('/climon/data', (req, res) => {
-// 	anyModel.getAll()
-// 			.then((data) => {
-// 				res.json(data);
-// 			});
-// });
-//
-// router.get('/climon/data/:modelname', (req, res) => {
-// 	anyModel.getAllFromAnyModel(req.params.modelname)
-// 			.then((data) => {
-// 				res.json(data);
-// 			});
-// });
+// 
+// 
+router.get('/api/collections', (req, res) => {
+	console.log('giving the modelnames');
+	climateModel.getDatabaseNames().then(dbNames => {
+		res.json(dbNames);
+	})
+});
+
+
+router.get('/climon/data/:modelname', (req, res) => {
+	console.log(req.params.modelname)
+	climateModel.query(`
+		SELECT * FROM lucht
+	`).then(data => {
+		res.json(data)
+	})
+});
+
+
 //
 // router.get('/tempmon/data', (req, res) => {
 // 	console.log('ik heb een request ontvangen');

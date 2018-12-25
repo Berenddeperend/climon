@@ -15,11 +15,5 @@ const initClimonDb = function() {
 
 }
 
-const query = function(query) {
-  // SELECT mean("light") AS "mean_light" FROM "climon"."autogen"."light(measurement)" WHERE time > now() - 6h GROUP BY time(1000s);
-  return climateModel.query(query)
-}
-
 module.exports.climateModel = climateModel;
 module.exports.initClimonDb = initClimonDb;
-module.exports.query = query;
