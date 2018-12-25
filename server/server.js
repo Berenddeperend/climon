@@ -34,6 +34,13 @@ router.get('/climon/data/:modelname', (req, res) => {
 	})
 });
 
+router.post('/api', (req, res) => {
+	console.log(req.body)
+	res.send('Hier heb je een response.')
+	// console.log('recieved post request, saving to db..');
+	// climateModel.writePoints();
+})
+
 
 //
 // router.get('/tempmon/data', (req, res) => {
@@ -56,4 +63,4 @@ module.exports.init = function(port){
 	app.listen(port, () => {
 		console.log(chalk.gray(`Starting the server at port ${port}`));
 	});
-};
+}; 

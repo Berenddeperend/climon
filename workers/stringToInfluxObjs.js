@@ -1,3 +1,9 @@
+
+/*
+This will generate an array with an entry for every 'field' it sees.
+Since it will eventually be saved with a 'writepoints' method, generating one array is fine.
+*/
+
 const { Transform } = require('stream');
 
 module.exports = () => {
@@ -47,7 +53,6 @@ function objectify(chunk){
        }
      }
    });
-
 
    return result;
 }

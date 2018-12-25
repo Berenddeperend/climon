@@ -1,11 +1,17 @@
 const { Writable } = require('stream');
 const climateModel = require('../models/climate').climateModel;
+const chalk = require('chalk');
 
-const dbSaver = function(){
+const dbSaver = function(args = {verbose: false}){
+	const verbose = args.verbose;
+
 	return new Writable({
 		objectMode: true,
 		write(obj, encoding, done){
-			climateModel.writePoints(obj)
+			if(verbose) {
+				console.log(chalk.gray('Saving ') + chalk.yellow(obj.length) + chalk.gray(' point(s) to influxDB.'))
+			}
+			// climateModel.writePoints(obj)
 			done();
 		}
 	});

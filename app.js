@@ -33,18 +33,18 @@ initClimonDb();
 climateModel.query(`
 SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht"
 `).then(result => {
-	console.log(result.length)
+	// console.log(result.length)
 	result.map(entry => {
-		console.log(entry, entry.time.toNanoISOString())
+		// console.log(entry, entry.time.toNanoISOString())
 	})
 });
 
 
-mockStream()
+mockStream({ multiple: true })
 // arduino('usb')
 		// .pipe(logStream({objectMode: false}))
 		.pipe(stringToInfluxObjs())
 		// .pipe(objValidator())
 		// .pipe(prettyPrintObject())
 		// .pipe(logStream({objectMode: true}))
-		// .pipe(dbSaver());
+		.pipe(dbSaver({ verbose: false }));
