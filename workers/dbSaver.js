@@ -11,7 +11,7 @@ const dbSaver = function(args = {verbose: false}){
 			if(verbose) {
 				console.log(chalk.gray('Saving ') + chalk.yellow(obj.length) + chalk.gray(' point(s) to influxDB.'))
 			}
-			// climateModel.writePoints(obj)
+			climateModel.writePoints(obj)
 			done();
 		}
 	});

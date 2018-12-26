@@ -6,6 +6,7 @@ const port = process.env.PORT || 4000;
 
 //models
 const { climateModel, initClimonDb } = require('./models/climate'); 
+const { startupsModel, initStartups } = require('./models/startups'); 
 const models = require('./models/general');
 
 //controllers
@@ -27,7 +28,7 @@ const dbSaver = require('./workers/dbSaver');
 //database 
 let isLocal = port === 4000;
 initClimonDb();
-
+initStartups();
 
 // SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
 climateModel.query(`
