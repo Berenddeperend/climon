@@ -7,24 +7,29 @@ const startupsModel = new Influx.InfluxDB({
 })
 
 const initStartups = function() {
-  const influx = new Influx.InfluxDB({ host: "localhost" });
-  influx.getDatabaseNames().then(dbNames => { 
-    if(!dbNames.includes('startups')) {
-      influx.createDatabase('startups');
-    } 
-  });
+  new Promise((resolve, reject) => {
+    const influx = new Influx.InfluxDB({ host: "localhost" });
 
-  incrementStartups();
-  logStartupsCount();
+    influx.getDatabaseNames().then(dbNames => { 
+      if(!dbNames.includes('startups')) {
+        influx.createDatabase('startups').then(resolve());
+      } else {
+        resolve();
+      }
+    });
+  }).then(incrementStartups)
+    .then(logStartupsCount);
 }
 
 const incrementStartups = function() {
-  startupsModel.writePoints([{
-    measurement: 'startup',
-    fields: {
-      device: "berend's macbook pro"
-    }
-  }])
+  return new Promise((resolve, reject) => {
+    startupsModel.writePoints([{
+      measurement: 'startup',
+      fields: {
+        device: "berend's macbook pro"
+      }
+    }]).then(resolve());
+  })
 }
 
 const logStartupsCount = function() {
