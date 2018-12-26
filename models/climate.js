@@ -6,12 +6,16 @@ const climateModel = new Influx.InfluxDB({
 })
 
 const initClimonDb = function() {
+  console.log('initializing climondb')
   return new Promise((resolve, reject) => {
     const influx = new Influx.InfluxDB({ host: "localhost" });
     influx.getDatabaseNames().then(dbNames => { 
-      if(!dbNames.includes('climon')) {
+      if(!dbNames.includes('climon')) 
+      {
+        console.log('creating climondb')
         influx.createDatabase('climon').then(resolve());
       } else {
+        console.log('it already exsisted')
         resolve();
       } 
     });

@@ -26,9 +26,21 @@ const arduino = require('./workers/arduino');
 const dbSaver = require('./workers/dbSaver');
 
 //database 
-let isLocal = port === 4000;
-initClimonDb();
 initStartups();
+
+let isLocal = port === 4000;
+initClimonDb().then(
+	// mockStream({ multiple: true })
+	// arduino('usb')
+	// .pipe(logStream({objectMode: false}))
+	// .pipe(stringToInfluxObjs())
+	// .pipe(objValidator())
+	// .pipe(prettyPrintObject())
+	// .pipe(logStream({objectMode: true}))
+	// .pipe(dbSaver({ verbose: false }))
+);
+
+
 
 // // SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
 // climateModel.query(`
@@ -41,11 +53,3 @@ initStartups();
 // });
 
 
-mockStream({ multiple: true })
-// arduino('usb')
-		// .pipe(logStream({objectMode: false}))
-		.pipe(stringToInfluxObjs())
-		// .pipe(objValidator())
-		// .pipe(prettyPrintObject())
-		// .pipe(logStream({objectMode: true}))
-		.pipe(dbSaver({ verbose: false }));
