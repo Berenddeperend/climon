@@ -30,15 +30,15 @@ let isLocal = port === 4000;
 initClimonDb();
 initStartups();
 
-// SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
-climateModel.query(`
-SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht"
-`).then(result => {
-	// console.log(result.length)
-	result.map(entry => {
-		// console.log(entry, entry.time.toNanoISOString())
-	})
-});
+// // SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
+// climateModel.query(`
+// SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht"
+// `).then(result => {
+// 	// console.log(result.length)
+// 	result.map(entry => {
+// 		// console.log(entry, entry.time.toNanoISOString())
+// 	})
+// });
 
 
 mockStream({ multiple: true })
