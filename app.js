@@ -7,7 +7,7 @@ const port = process.env.PORT || 4000;
 //models
 const { climateModel, initClimonDb } = require('./models/climate'); 
 const { startupsModel, initStartups } = require('./models/startups'); 
-const models = require('./models/general');
+const { models, getDataBaseModel, initDb, deleteDb} = require('./models/general');
 
 //controllers
 
@@ -41,6 +41,18 @@ initClimonDb().then(()=> {
 });
 
 
+initDb('joepfried')
+	.then(() => { return getDataBaseModel('joepfried') })
+	.then(db => {
+		console.log(db)
+}); 
+
+
+// deleteDb('joepfried');
+
+// getDataBaseModel('joepfried').then(db => {
+// 	console.log(db)
+// })
 
 // // SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
 // climateModel.query(`

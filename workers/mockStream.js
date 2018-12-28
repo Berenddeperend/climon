@@ -23,6 +23,8 @@ function randomStringBuilder(multiple) {
 	}
 }
 
+//measurement=klimaat&tag/String/location=Testlocatie 1&field/Number/temperature=122&field/Number/temperature=23&field/Number/light=100
+
 function randomNumberAsString() {
 	return String(Math.round(Math.random() * 1023));
 }

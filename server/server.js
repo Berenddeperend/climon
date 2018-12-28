@@ -37,11 +37,18 @@ router.get('/api/:dbName/query', (req, res) => {
 	 });
 })
 
-router.post('/api', (req, res) => {
-	console.log(req.body)
+router.post('/api/:dbName/entry', (req, res) => {
 	res.send('Hier heb je een response.')
-	// console.log('recieved post request, saving to db..');
 	// climateModel.writePoints();
+	const influx = new Influx.InfluxDB({ host: "localhost" });
+
+	influx.createDatabase(req.params.dbName).then(()=> {
+		const model = new Influx.InfluxDB({ //shouldn't happen here
+			host: 'localhost',
+			database: req.params.dbName,
+		});
+	 	return model.writePoints(req.body);
+	});
 })
 
 module.exports.init = function(port){
