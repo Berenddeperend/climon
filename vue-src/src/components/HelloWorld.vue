@@ -47,6 +47,7 @@ import Highcharts from 'highcharts';
 import { format } from 'date-fns'
 
 let chart;
+const url = "http://localhost:4000";
 
 export default {
   name: 'HelloWorld',
@@ -65,7 +66,7 @@ export default {
   },
   methods: {
   	getCollections() {
-  	  fetch('http://localhost:4000/api/collections')
+  	  fetch(`${url}/api/collections`)
         .then(res => res.json())
         .then(json => {
 	        this.models = json;
@@ -78,7 +79,12 @@ export default {
 
     fetchAllFromCollection(collection) {
       // fetch(`http://localhost:4000/climon/data/${collection}`)
-      fetch(`http://localhost:4000/climon/data/climon`)
+      // fetch(`${url}/api/${collection}/query`)
+      fetch(`${url}/api/climon/query`, {
+        headers: {
+          "query": "SELECT * FROM lucht" 
+        }
+      })
           .then(res => res.json())
           .then(json => {
             this.data = json;

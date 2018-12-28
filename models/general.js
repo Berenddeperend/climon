@@ -9,4 +9,8 @@ const listDataBases = () => {
   })
 }
 
+const getDataBaseModel = (dbName) => {
+  
+}
+
 module.exports.listDataBases = listDataBases;

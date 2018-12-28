@@ -29,8 +29,8 @@ const dbSaver = require('./workers/dbSaver');
 initStartups();
 
 let isLocal = port === 4000;
-initClimonDb().then(
-	// mockStream({ multiple: true })
+initClimonDb().then(()=> {
+	mockStream({ multiple: true })
 	// arduino('usb')
 	// .pipe(logStream({objectMode: false}))
 	// .pipe(stringToInfluxObjs())
@@ -38,7 +38,7 @@ initClimonDb().then(
 	// .pipe(prettyPrintObject())
 	// .pipe(logStream({objectMode: true}))
 	// .pipe(dbSaver({ verbose: false }))
-);
+});
 
 
 

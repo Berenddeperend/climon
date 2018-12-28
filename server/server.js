@@ -5,6 +5,9 @@ const cors = require('cors');
 const path = require('path');
 const router = express.Router();
 
+const Influx = require('influx'); //todo: remove later
+
+
 const climateModel = require('../models/climate').climateModel;
 
 
@@ -18,21 +21,21 @@ const climateModel = require('../models/climate').climateModel;
 // 
 // 
 router.get('/api/collections', (req, res) => {
-	console.log('giving the modelnames');
 	climateModel.getDatabaseNames().then(dbNames => {
 		res.json(dbNames);
 	})
 });
 
-
-router.get('/climon/data/:modelname', (req, res) => {
-	console.log(req.params.modelname)
-	climateModel.query(`
-		SELECT * FROM lucht
-	`).then(data => {
-		res.json(data)
-	})
-});
+router.get('/api/:dbName/query', (req, res) => {
+	const query = req.headers.query
+	const model = new Influx.InfluxDB({ //shouldn't happen here
+		host: 'localhost',
+		database: req.params.dbName,
+	 });
+	 return model.query(query).then(result => {
+		 res.json(result)
+	 });
+})
 
 router.post('/api', (req, res) => {
 	console.log(req.body)
@@ -40,18 +43,6 @@ router.post('/api', (req, res) => {
 	// console.log('recieved post request, saving to db..');
 	// climateModel.writePoints();
 })
-
-
-//
-// router.get('/tempmon/data', (req, res) => {
-// 	console.log('ik heb een request ontvangen');
-//
-//
-// 	temperatureModel.getEachHour().then(function(data){
-// 		res.json(data);
-// 	});
-// });
-
 
 module.exports.init = function(port){
 	const app = express();
