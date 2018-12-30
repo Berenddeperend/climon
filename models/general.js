@@ -5,8 +5,8 @@ const baseInfluxInstance = new Influx.InfluxDB({ host: "localhost" });
 const listDataBases = () => {
   return new Promise(resolve => {
     baseInfluxInstance.getDatabaseNames()
-      .then(dbNames => { 
-        resolve(dbNames)
+      .then(dbNames => {
+        resolve(dbNames.filter(dbName => dbName !== '_internal')); //all without _internal
       });
   })
 }
@@ -24,17 +24,18 @@ const getDataBaseModel = (dbName) => {
   });
 }
 
+
+
 const initDb = (dbName) => {
   return new Promise((resolve, reject) => {
     listDataBases()
       .then(dbNames => {
         if(!dbNames.includes(dbName)) {
           baseInfluxInstance.createDatabase(dbName).then(()=> {
-            // console.log('db created!')
-            resolve()
+            resolve(getDataBaseModel(dbName));
           });
         } else {
-          resolve(); 
+          resolve(getDataBaseModel(dbName)); 
         } 
       });
   });

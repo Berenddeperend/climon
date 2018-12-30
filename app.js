@@ -41,14 +41,15 @@ initClimonDb().then(()=> {
 });
 
 
-initDb('joepfried')
-	.then(() => { return getDataBaseModel('joepfried') })
-	.then(db => {
-		console.log(db)
-}); 
+
+// initDb('joepfried')
+// 	.then((db) => {
+// 		console.log(db);
+// 	}
+// );
 
 
-// deleteDb('joepfried');
+// deleteDb('express_response_db');
 
 // getDataBaseModel('joepfried').then(db => {
 // 	console.log(db)

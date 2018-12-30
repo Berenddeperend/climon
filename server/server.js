@@ -9,6 +9,7 @@ const Influx = require('influx'); //todo: remove later
 
 
 const climateModel = require('../models/climate').climateModel;
+const { initDb, getDataBaseModel, listDataBases } = require('../models/general');
 
 
 //declare routes here
@@ -21,34 +22,40 @@ const climateModel = require('../models/climate').climateModel;
 // 
 // 
 router.get('/api/collections', (req, res) => {
-	climateModel.getDatabaseNames().then(dbNames => {
+	listDataBases().then(dbNames => {
 		res.json(dbNames);
 	})
 });
 
-router.get('/api/:dbName/query', (req, res) => {
+router.get('/api/:collection/query', (req, res) => {
 	const query = req.headers.query
 	const model = new Influx.InfluxDB({ //shouldn't happen here
 		host: 'localhost',
-		database: req.params.dbName,
+		database: req.params.collection,
 	 });
 	 return model.query(query).then(result => {
-		 res.json(result)
+		 res.json(result);
 	 });
 })
 
-router.post('/api/:dbName/entry', (req, res) => {
+router.get('/api/:dbName/measurements', (req, res) => {
+	getDataBaseModel(req.params.dbName)
+		.then(model => {
+			return model.getMeasurements();
+		}).then(measurements => {
+			console.log('measurements:', measurements)
+			res.json(measurements);
+		});
+});
+
+router.post('/api/:collection/entry', (req, res) => {
 	res.send('Hier heb je een response.')
 	// climateModel.writePoints();
-	const influx = new Influx.InfluxDB({ host: "localhost" });
-
-	influx.createDatabase(req.params.dbName).then(()=> {
-		const model = new Influx.InfluxDB({ //shouldn't happen here
-			host: 'localhost',
-			database: req.params.dbName,
+	
+	initDb(req.params.collection)
+		.then(model => {
+			model.writePoints(req.body);
 		});
-	 	return model.writePoints(req.body);
-	});
 })
 
 module.exports.init = function(port){
