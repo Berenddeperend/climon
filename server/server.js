@@ -5,6 +5,12 @@ const cors = require('cors');
 const path = require('path');
 const router = express.Router();
 
+const Influx = require('influx'); //todo: remove later
+
+
+const climateModel = require('../models/climate').climateModel;
+const { initDb, getDataBaseModel, listDataBases } = require('../models/general');
+
 
 //declare routes here
 //routes should use controllers
@@ -13,36 +19,44 @@ const router = express.Router();
 // router.get('/', (req, res) => {
 // 	res.sendFile(path.join(__dirname + '/../public/index.html'));
 // });
-//
-//
-// router.get('/api/collections', (req, res) => {
-// 	console.log('giving the modelnames');
-// 	res.json(fetchCollections());
-// });
-//
-// router.get('/climon/data', (req, res) => {
-// 	anyModel.getAll()
-// 			.then((data) => {
-// 				res.json(data);
-// 			});
-// });
-//
-// router.get('/climon/data/:modelname', (req, res) => {
-// 	anyModel.getAllFromAnyModel(req.params.modelname)
-// 			.then((data) => {
-// 				res.json(data);
-// 			});
-// });
-//
-// router.get('/tempmon/data', (req, res) => {
-// 	console.log('ik heb een request ontvangen');
-//
-//
-// 	temperatureModel.getEachHour().then(function(data){
-// 		res.json(data);
-// 	});
-// });
+// 
+// 
+router.get('/api/collections', (req, res) => {
+	listDataBases().then(dbNames => {
+		res.json(dbNames);
+	})
+});
 
+router.get('/api/:collection/query', (req, res) => {
+	const query = req.headers.query
+	const model = new Influx.InfluxDB({ //shouldn't happen here
+		host: 'localhost',
+		database: req.params.collection,
+	 });
+	 return model.query(query).then(result => {
+		 res.json(result);
+	 });
+})
+
+router.get('/api/:dbName/measurements', (req, res) => {
+	getDataBaseModel(req.params.dbName)
+		.then(model => {
+			return model.getMeasurements();
+		}).then(measurements => {
+			console.log('measurements:', measurements)
+			res.json(measurements);
+		});
+});
+
+router.post('/api/:collection/entry', (req, res) => {
+	res.send('Hier heb je een response.')
+	// climateModel.writePoints();
+	
+	initDb(req.params.collection)
+		.then(model => {
+			model.writePoints(req.body);
+		});
+})
 
 module.exports.init = function(port){
 	const app = express();
@@ -54,4 +68,4 @@ module.exports.init = function(port){
 	app.listen(port, () => {
 		console.log(chalk.gray(`Starting the server at port ${port}`));
 	});
-};
+}; 

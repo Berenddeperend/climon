@@ -5,8 +5,9 @@ const config = require('./config/database');
 const port = process.env.PORT || 4000;
 
 //models
-const anyModel = require('./models/any');
-const climateModel = require('./models/climate');
+const { climateModel, initClimonDb } = require('./models/climate'); 
+const { startupsModel, initStartups } = require('./models/startups'); 
+const { models, getDataBaseModel, initDb, deleteDb} = require('./models/general');
 
 //controllers
 
@@ -18,35 +19,50 @@ server.init(port);
 const mockStream = require('./workers/mockStream');
 const logStream = require('./workers/logger');
 const stringParser = require('./workers/stringParser');
+const stringToInfluxObjs = require('./workers/stringToInfluxObjs');
 const prettyPrintObject = require('./workers/objStreamLogger');
 const objValidator = require('./workers/objValidator');
 const arduino = require('./workers/arduino');
 const dbSaver = require('./workers/dbSaver');
 
-//database
-const mongoose = require('mongoose');
+//database 
+initStartups();
+
 let isLocal = port === 4000;
-
-
-
-mongoose.connect(config.database.mlab, {
-	useNewUrlParser: true
-}).then(() => {
-	console.log(chalk.gray(`Succesfully connected to database ${mongoose.connection.host}`));
-
-	const collections = mongoose.connection.modelNames();
-	console.log(collections);
-
-}).catch((error) => {
-	console.log(chalk.red(`Connect to database failed:`));
-	console.log(chalk.red(error));
+initClimonDb().then(()=> {
+	mockStream({ multiple: true })
+	// arduino('usb')
+	// .pipe(logStream({objectMode: false}))
+	// .pipe(stringToInfluxObjs())
+	// .pipe(objValidator())
+	// .pipe(prettyPrintObject())
+	// .pipe(logStream({objectMode: true}))
+	// .pipe(dbSaver({ verbose: false }))
 });
 
-// mockStream()
-// arduino('usb')
-// 		.pipe(logStream({objectMode: false}))
-// 		.pipe(stringParser())
-// 		.pipe(objValidator())
-// 		.pipe(prettyPrintObject())
-// 		.pipe(logStream({objectMode: true}));
-// 		.pipe(dbSaver());
+
+
+// initDb('joepfried')
+// 	.then((db) => {
+// 		console.log(db);
+// 	}
+// );
+
+
+// deleteDb('express_response_db');
+
+// getDataBaseModel('joepfried').then(db => {
+// 	console.log(db)
+// })
+
+// // SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht" 
+// climateModel.query(`
+// SELECT mean("temperature") AS "mean_temperature", mean("humidity") AS "mean_humidity" FROM "climon"."autogen"."lucht"
+// `).then(result => {
+// 	// console.log(result.length)
+// 	result.map(entry => {
+// 		// console.log(entry, entry.time.toNanoISOString())
+// 	})
+// });
+
+

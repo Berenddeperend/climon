@@ -59,7 +59,7 @@ void setup() {
   // delayMS = sensor.min_delay / 1000;
   // delayMS = 900000; //15 minutes
   // delayMS = 5000; //5 seconds
-  delayMS = 25000; //5 minutes
+  delayMS = 300000; //5 minutes
 }
 
 void loop() {
@@ -69,7 +69,8 @@ void loop() {
   sensors_event_t event;  
 
 
-  Serial.print("location=Rembrandtlaan"); 
+
+  Serial.print("measurement=lucht&tag/String/location=Rembrandtlaan"); 
 
   dht.temperature().getEvent(&event);
   
@@ -77,7 +78,7 @@ void loop() {
     Serial.println("Error reading temperature!");
   }
   else {
-    Serial.print("&temperature=");
+    Serial.print("&field/Number/temperature=");
     Serial.print(event.temperature);
   }
 
@@ -87,7 +88,7 @@ void loop() {
     Serial.println("Error reading humidity!");
   }
   else {
-    Serial.print("&humidity=");
+    Serial.print("&field/Number/humidity=");
     Serial.println(event.relative_humidity);
   }
 }

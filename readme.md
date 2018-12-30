@@ -1,1 +1,1 @@
-Works with Node 8
+Climon (short for 'climate monitor') is a program I wrote to measure the climate in my rooms, plants, desks, etc.

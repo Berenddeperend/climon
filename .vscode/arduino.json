@@ -1,4 +1,5 @@
 {
-    "board": "arduino:avr:uno",
-    "port": "/dev/cu.usbmodem1411"
+    "board": "arduino:avr:nano",
+    "port": "/dev/cu.wchusbserial1420",
+    "configuration": "cpu=atmega328"
 }
