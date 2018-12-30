@@ -30,14 +30,14 @@ initStartups();
 
 let isLocal = port === 4000;
 initClimonDb().then(()=> {
-	mockStream({ multiple: true })
-	// arduino('usb')
+	// mockStream({ multiple: true })
+	arduino('usb')
 	// .pipe(logStream({objectMode: false}))
-	// .pipe(stringToInfluxObjs())
+	.pipe(stringToInfluxObjs())
 	// .pipe(objValidator())
 	// .pipe(prettyPrintObject())
-	// .pipe(logStream({objectMode: true}))
-	// .pipe(dbSaver({ verbose: false }))
+	.pipe(logStream({objectMode: true}))
+	.pipe(dbSaver({ verbose: false }))
 });
 
 
