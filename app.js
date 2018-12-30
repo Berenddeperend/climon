@@ -5,9 +5,11 @@ const config = require('./config/database');
 const port = process.env.PORT || 80;
 
 //models
-const { climateModel, initClimonDb } = require('./models/climate'); 
-const { startupsModel, initStartups } = require('./models/startups'); 
-const { models, getDataBaseModel, initDb, deleteDb} = require('./models/general');
+// const climateModel = require('./models/climate').climateModel;
+const initClimonDb = require('./models/climate').initClimonDb;
+// const startupsModel = require('./models/startups').startupsModel; 
+const initStartups = require('./models/startups').initStartups; 
+// const { models, getDataBaseModel, initDb, deleteDb } = require('./models/general');
 
 //controllers
 

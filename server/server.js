@@ -9,7 +9,9 @@ const Influx = require('influx'); //todo: remove later
 
 
 const climateModel = require('../models/climate').climateModel;
-const { initDb, getDataBaseModel, listDataBases } = require('../models/general');
+const initDb = require('../models/general').initDb;
+const getDataBaseModel = require('../models/general').getDataBaseModel;
+const listDataBases = require('../models/general').listDataBases;
 
 
 //declare routes here
