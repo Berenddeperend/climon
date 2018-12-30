@@ -2,7 +2,7 @@
 require('dotenv').config();
 const chalk = require('chalk');
 const config = require('./config/database');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 80;
 
 //models
 const { climateModel, initClimonDb } = require('./models/climate'); 
@@ -28,7 +28,7 @@ const dbSaver = require('./workers/dbSaver');
 //database 
 initStartups();
 
-let isLocal = port === 4000;
+let isLocal = port === 80;
 initClimonDb().then(()=> {
 	// mockStream({ multiple: true })
 	arduino('usb')
