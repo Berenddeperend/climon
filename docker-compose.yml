@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  app: 
+    container_name: climon
+    restart: always
+    build: .
+    volumes: 
+      - .:/usr/src/app
+    ports: 
+      - '80:4000'
+    links: 
+      - influx
+    depends_on: 
+      - influx
+  influx: 
+    container_name: influx
+    image: influxdb
+    ports: 
+      - '8086:8086'

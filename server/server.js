@@ -16,21 +16,25 @@ const { initDb, getDataBaseModel, listDataBases } = require('../models/general')
 //routes should use controllers
 //controllers could also be used elsewhere.
 
-// router.get('/', (req, res) => {
-// 	res.sendFile(path.join(__dirname + '/../public/index.html'));
-// });
+router.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname + '/../public/index.html'));
+});
 // 
 // 
 router.get('/api/collections', (req, res) => {
 	listDataBases().then(dbNames => {
 		res.json(dbNames);
+	}).catch((reason) => {
+		console.log('list databases went wrong:')
+		console.log(reason)
 	})
 });
 
 router.get('/api/:collection/query', (req, res) => {
 	const query = req.headers.query
 	const model = new Influx.InfluxDB({ //shouldn't happen here
-		host: 'localhost',
+		host: process.env.INFLUX_HOST,
+		port: process.env.INFLUX_PORT,
 		database: req.params.collection,
 	 });
 	 return model.query(query).then(result => {
@@ -45,7 +49,9 @@ router.get('/api/:dbName/measurements', (req, res) => {
 		}).then(measurements => {
 			console.log('measurements:', measurements)
 			res.json(measurements);
-		});
+		}).catch(reason => {
+			reject(reason);
+		});;
 });
 
 router.post('/api/:collection/entry', (req, res) => {
@@ -54,7 +60,11 @@ router.post('/api/:collection/entry', (req, res) => {
 	
 	initDb(req.params.collection)
 		.then(model => {
+			console.log(model);
 			model.writePoints(req.body);
+		}).catch(reason => {
+			console.log('failed initdb because:');
+			console.log(reason);
 		});
 })
 
