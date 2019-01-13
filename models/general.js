@@ -36,8 +36,6 @@ const getDataBaseModel = (dbName) => {
   });
 }
 
-
-
 const initDb = (dbName) => {
   return new Promise((resolve, reject) => {
     listDataBases()
@@ -49,10 +47,16 @@ const initDb = (dbName) => {
         } else {
           resolve(getDataBaseModel(dbName)); 
         } 
-      }).catch(reason => {
-        reject(reason);
-      });;
+      }).catch(reason => reject(reason));
   });
+}
+
+const query = (dbName, query) => {
+  return new Promise(resolve, reject => {
+    getDataBaseModel(dbName)
+      .then(model => model.query(query))
+      .then(result => resolve(result))
+  }).catch(reason => reject(reason));
 }
 
 const deleteDb = (dbName) => {
@@ -70,3 +74,4 @@ module.exports.baseInfluxInstance = baseInfluxInstance;
 module.exports.initDb = initDb;
 module.exports.getDataBaseModel = getDataBaseModel;
 module.exports.deleteDb = deleteDb;
+module.exports.query = query;

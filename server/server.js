@@ -8,10 +8,9 @@ const router = express.Router();
 const Influx = require('influx'); //todo: remove later
 
 
-const climateModel = require('../models/climate').climateModel;
-const initDb = require('../models/general').initDb;
-const getDataBaseModel = require('../models/general').getDataBaseModel;
-const listDataBases = require('../models/general').listDataBases;
+const { initDb, getDataBaseModel, listDataBases, query, deleteDb } = require('../models/general');
+
+
 
 
 //declare routes here
@@ -32,17 +31,34 @@ router.get('/api/collections', (req, res) => {
 	})
 });
 
-router.get('/api/:collection/query', (req, res) => {
-	const query = req.headers.query
-	const model = new Influx.InfluxDB({ //shouldn't happen here
-		host: process.env.INFLUX_HOST,
-		port: process.env.INFLUX_PORT,
-		database: req.params.collection,
-	 });
-	 return model.query(query).then(result => {
-		 res.json(result);
-	 });
+router.post('/api/collections/:collectionName', (req, res) => {
+	initDb(req.params.collectionName).then(response => {
+		res.json(response);
+	}).catch(reason => {
+		console.log(`couldnt make db: ${req.params.collectionName}`);
+		console.log(reason);
+	})
 })
+
+router.delete('/api/:collection', (req, res) => {
+	const dbName = req.params.dbName;
+	deleteDb(dbName).then(()=> {
+		res.json(`sucessfully removed database ${dbName}.`)
+	}).catch((reason => {
+		console.log(`couldnt remove database ${dbname}`);
+		console.log(reason);
+	})
+);
+
+router.get('/api/:collection/query', (req, res) => {
+	const userQuery = req.headers.query;
+	query(req.params.collection, userQuery)
+		.then(result => res.json(result))
+		.catch(reason => {
+			console.log('failed to query:');
+			console.log(reason);
+		});
+});
 
 router.get('/api/:dbName/measurements', (req, res) => {
 	getDataBaseModel(req.params.dbName)
@@ -56,7 +72,7 @@ router.get('/api/:dbName/measurements', (req, res) => {
 		});;
 });
 
-router.post('/api/:collection/entry', (req, res) => {
+router.post('/api/collections/:collection/entry', (req, res) => {
 	res.send('Hier heb je een response.')
 	// climateModel.writePoints();
 	
