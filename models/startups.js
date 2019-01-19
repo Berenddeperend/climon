@@ -1,7 +1,7 @@
 const Influx = require('influx');
 const chalk = require('chalk');
 const retry = require('async').retry;
-const { listDataBases, initDb } = require('./general');
+const { initDb } = require('./general');
 
 const startupsModel = new Influx.InfluxDB({
   host: process.env.INFLUX_HOST,
@@ -23,7 +23,7 @@ const incrementStartups = function() {
     startupsModel.writePoints([{
       measurement: 'startup',
       fields: {
-        device: "berend's macbook pro"
+        device: process.env.DEVICE
       }
      }]
     ).then(resolve())
