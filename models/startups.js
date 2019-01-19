@@ -1,7 +1,7 @@
 const Influx = require('influx');
 const chalk = require('chalk');
 const retry = require('async').retry;
-const listDatabases = require('./general').listDataBases;
+const { listDataBases, initDb } = require('./general');
 
 const startupsModel = new Influx.InfluxDB({
   host: process.env.INFLUX_HOST,
@@ -10,17 +10,7 @@ const startupsModel = new Influx.InfluxDB({
 })
 
 const initStartups = async function() {
-  return new Promise((resolve, reject) => {
-    listDatabases().then(dbNames => {
-      if(!dbNames.includes('startups')) {
-        influx.createDatabase('startups').then(resolve());
-      } else {
-        resolve();
-      }
-    }).catch((reason) => {
-      reject(reason);
-    });
-  })
+    initDb('startups')
     .then(incrementStartups)
     .then(logStartupsCount)
     .catch((reason) => {

@@ -5,9 +5,6 @@ const cors = require('cors');
 const path = require('path');
 const router = express.Router();
 
-const Influx = require('influx'); //todo: remove later
-
-
 const { initDb, getDataBaseModel, listDataBases, query, deleteDb } = require('../models/general');
 
 
@@ -37,18 +34,18 @@ router.post('/api/collections/:collectionName', (req, res) => {
 	}).catch(reason => {
 		console.log(`couldnt make db: ${req.params.collectionName}`);
 		console.log(reason);
-	})
-})
+	});
+});
 
 router.delete('/api/:collection', (req, res) => {
 	const dbName = req.params.dbName;
 	deleteDb(dbName).then(()=> {
-		res.json(`sucessfully removed database ${dbName}.`)
-	}).catch((reason => {
+		res.json(`sucessfully removed database ${dbName}.`);
+	}).catch(reason => {
 		console.log(`couldnt remove database ${dbname}`);
 		console.log(reason);
 	})
-);
+});
 
 router.get('/api/:collection/query', (req, res) => {
 	const userQuery = req.headers.query;
@@ -69,7 +66,7 @@ router.get('/api/:dbName/measurements', (req, res) => {
 			res.json(measurements);
 		}).catch(reason => {
 			reject(reason);
-		});;
+		});
 });
 
 router.post('/api/collections/:collection/entry', (req, res) => {
@@ -84,9 +81,10 @@ router.post('/api/collections/:collection/entry', (req, res) => {
 			console.log('failed initdb because:');
 			console.log(reason);
 		});
-})
+});
 
-module.exports.init = function(port){
+
+module.exports.init = function(port) {
 	const app = express();
 	app.use(cors());
 	app.use(bodyParser.urlencoded({extended: true}));
@@ -96,4 +94,4 @@ module.exports.init = function(port){
 	app.listen(port, () => {
 		console.log(chalk.gray(`Starting the server at port ${port}`));
 	});
-}; 
+}
