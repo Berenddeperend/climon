@@ -21,10 +21,10 @@
     "express": "^4.16.2",
     "influx": "^5.0.7",
     "moment": "^2.19.1",
-    "serialport": "^6.2.1"
+    "serialport": "^6.2.1",
+    "nodemon": "^1.18.3"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.18.3"
+    "concurrently": "^3.5.0"
   }
 }

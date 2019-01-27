@@ -4,6 +4,7 @@ services:
     container_name: climon
     restart: always
     build: .
+    command: nodemon app.js
     volumes: 
       - .:/usr/src/app
     ports: 

@@ -1,6 +1,5 @@
 const Influx = require('influx');
 const chalk = require('chalk');
-const retry = require('async').retry;
 const { initDb } = require('./general');
 
 const startupsModel = new Influx.InfluxDB({
@@ -10,7 +9,7 @@ const startupsModel = new Influx.InfluxDB({
 })
 
 const initStartups = async function() {
-    initDb('startups')
+      initDb('startups')
     .then(incrementStartups)
     .then(logStartupsCount)
     .catch((reason) => {
