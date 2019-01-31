@@ -37,12 +37,12 @@ router.post('/api/collections/:collectionName', (req, res) => {
 	});
 });
 
-router.delete('/api/:collection', (req, res) => {
-	const dbName = req.params.dbName;
-	deleteDb(dbName).then(()=> {
-		res.json(`sucessfully removed database ${dbName}.`);
+router.delete('/api/collections/:collectionName', (req, res) => {
+	const collectionName = req.params.collectionName;
+	deleteDb(collectionName).then(()=> {
+		res.json(`sucessfully removed database ${collectionName}.`);
 	}).catch(reason => {
-		console.log(`couldnt remove database ${dbname}`);
+		console.log(`couldnt remove database ${collectionName}`);
 		console.log(reason);
 	})
 });
@@ -83,6 +83,11 @@ router.post('/api/collections/:collection/entry', (req, res) => {
 		});
 });
 
+router.post('/api/echo', (req, res) => {
+	console.log('/api/echo gave us:');
+	console.log(req.body);
+	res.send(req.body);
+});
 
 module.exports.init = function(port) {
 	const app = express();
